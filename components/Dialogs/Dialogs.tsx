@@ -1,13 +1,9 @@
 import React from 'react';
 
-type DialogsPropsType = {
-    title: string
-}
-
-export const Dialogs: React.FC<DialogsPropsType> = (props) => {
+export const Dialogs = () => {
     return (
         <div>
-            {props.title}
+            Dialogs
         </div>
     )
 }
