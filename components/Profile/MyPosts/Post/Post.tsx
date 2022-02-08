@@ -1,7 +1,8 @@
 import React from 'react';
 import s from './Post.module.css';
+import {MyPostsPropsType} from "../MyPosts";
 
-const Post = (props) => {
+const Post = (props: MyPostsPropsType) => {
 
     return (
         <div className={s.item}>
