@@ -27,6 +27,21 @@ const Message: React.FC<MessagePropsType> = (props) => {
 }
 
 export const Dialogs = () => {
+
+    let dialogsData = [
+        {id: 1, name: "Andrew"},
+        {id: 2, name: "Hannah"},
+        {id: 3, name: "William"},
+        {id: 4, name: "Jennifer"},
+        {id: 5, name: "Holly"}
+    ]
+
+    let messageData = [
+        {id: 1, message: "Hi"},
+        {id: 2, message: "How are you"},
+        {id: 3, message: "Hell yeah"}
+    ]
+
     return (
         <div className={s.dialogs}>
             <div className={s.dialogsItem}>
