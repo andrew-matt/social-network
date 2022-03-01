@@ -30,7 +30,7 @@ const MyPosts: React.FC<MyPostsPropsType> = (props) => {
                     <textarea ref={newPostElement}></textarea>
                 </div>
                 <div>
-                    <button onClick={addPost}>Add post</button>
+                    <button onClick={() => newPostElement.current ? props.addPost(newPostElement.current?.value) : ""}>Add post</button>
                 </div>
             </div>
             <div className={s.posts}>
