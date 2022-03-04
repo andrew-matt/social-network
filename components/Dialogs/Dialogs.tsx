@@ -6,17 +6,26 @@ import {DialogPageType} from "../../Redux/State";
 
 export type DialogsPropsType = {
     state: DialogPageType
+    updateNewMessageText: (newText: string) => void
+    addMessage: () => void
 }
 
 export const Dialogs: React.FC<DialogsPropsType> = (props) => {
 
-    let dialogElements = props.state.dialogs.map(d => <DialogItem name={d.name} id={d.id}/>);
-    let messageElements = props.state.messages.map(m => <Message message={m.message}/>);
-    
+    let dialogElements = props.state.dialogs.map(d => <DialogItem key={d.id} name={d.name} id={d.id}/>);
+    let messageElements = props.state.messages.map(m => <Message key={m.id} message={m.message}/>);
+
     let newMessageElement = React.createRef<HTMLTextAreaElement>()
 
     const addMessage = () => {
-        alert(newMessageElement.current?.value)
+       props.addMessage()
+    }
+
+    const onMessageChange = () => {
+        let text = newMessageElement.current?.value
+        if (text) {
+            props.updateNewMessageText(text)
+        }
     }
 
     return (
@@ -26,7 +35,7 @@ export const Dialogs: React.FC<DialogsPropsType> = (props) => {
             </div>
             <div className={s.messages}>
                 {messageElements}
-                <div><textarea ref={newMessageElement}></textarea></div>
+                <div><textarea onChange={onMessageChange} ref={newMessageElement} value={props.state.newMessageText}></textarea></div>
                 <div><button onClick={addMessage}>Add message</button></div>
             </div>
         </div>
