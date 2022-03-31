@@ -24,10 +24,21 @@ export type RootStateType = {
     profilePage: ProfilePageType
     dialogsPage: DialogPageType
 }
-export type ActionType = {
-    type: string
-    newText?: string
+type AddPostActionType = {
+    type: 'ADD-POST'
 }
+type UpdateNewPostTextActionType = {
+    type: 'UPDATE-NEW-POST-TEXT'
+    newText: string
+}
+type AddMessageActionType = {
+    type: 'ADD-MESSAGE'
+}
+type UpdateNewNewMessageActionType = {
+    type: 'UPDATE-NEW-MESSAGE-TEXT'
+    newText: string
+}
+export type ActionType = AddPostActionType | UpdateNewPostTextActionType | AddMessageActionType | UpdateNewNewMessageActionType
 export type StoreType = {
     _state: RootStateType
     getState: () => RootStateType
