@@ -24,21 +24,11 @@ export type RootStateType = {
     profilePage: ProfilePageType
     dialogsPage: DialogPageType
 }
-type AddPostActionType = {
-    type: 'ADD-POST'
-}
-type UpdateNewPostTextActionType = {
-    type: 'UPDATE-NEW-POST-TEXT'
-    newText: string
-}
-type AddMessageActionType = {
-    type: 'ADD-MESSAGE'
-}
-type UpdateNewNewMessageActionType = {
-    type: 'UPDATE-NEW-MESSAGE-TEXT'
-    newText: string
-}
-export type ActionType = AddPostActionType | UpdateNewPostTextActionType | AddMessageActionType | UpdateNewNewMessageActionType
+export type ActionType =
+    ReturnType<typeof AddPostActionCreator>
+    | ReturnType<typeof UpdateNewPostTextActionCreator>
+    | ReturnType<typeof AddMessageActionCreator>
+    | ReturnType<typeof UpdateNewMessageActionCreator>
 export type StoreType = {
     _state: RootStateType
     getState: () => RootStateType
@@ -46,6 +36,17 @@ export type StoreType = {
     dispatch: (action: ActionType) => void
     subscribe: (observer: () => void) => void
 }
+
+export const AddPostActionCreator = () => ({type: 'ADD-POST'} as const)
+export const UpdateNewPostTextActionCreator = (newText: string) => ({
+    type: 'UPDATE-NEW-POST-TEXT',
+    newText: newText
+} as const)
+export const AddMessageActionCreator = () => ({type: 'ADD-MESSAGE'} as const)
+export const UpdateNewMessageActionCreator = (newText: string) => ({
+    type: 'UPDATE-NEW-MESSAGE-TEXT',
+    newText: newText
+} as const)
 
 
 let store: StoreType = {
@@ -93,10 +94,8 @@ let store: StoreType = {
             this._state.profilePage.newPostText = ''
             this._callSubscriber()
         } else if (action.type === 'UPDATE-NEW-POST-TEXT') {
-            if (action.newText) {
-                this._state.profilePage.newPostText = action.newText
-                this._callSubscriber()
-            }
+            this._state.profilePage.newPostText = action.newText
+            this._callSubscriber()
         } else if (action.type === 'ADD-MESSAGE') {
             let newMessage: MessageType = {
                 id: 4,
@@ -106,10 +105,8 @@ let store: StoreType = {
             this._state.dialogsPage.newMessageText = ''
             this._callSubscriber()
         } else if (action.type === 'UPDATE-NEW-MESSAGE-TEXT') {
-            if (action.newText) {
-                this._state.dialogsPage.newMessageText = action.newText
-                this._callSubscriber()
-            }
+            this._state.dialogsPage.newMessageText = action.newText
+            this._callSubscriber()
         }
     },
 }
