@@ -24,14 +24,15 @@ export type RootStateType = {
     profilePage: ProfilePageType
     dialogsPage: DialogPageType
 }
+export type ActionType = {
+    type: string
+    newText?: string
+}
 export type StoreType = {
     _state: RootStateType
     getState: () => RootStateType
     _callSubscriber: () => void
-    addPost: () => void
-    updateNewPostText: (newText: string) => void
-    addMessage: () => void
-    updateNewMessageText: (newText: string) => void
+    dispatch: (action: ActionType) => void
     subscribe: (observer: () => void) => void
 }
 
@@ -67,36 +68,39 @@ let store: StoreType = {
     _callSubscriber() {
         console.log('State is changed')
     },
-    addPost() {
-        let newPost: PostType = {
-            id: 3,
-            message: this._state.profilePage.newPostText,
-            likesCount: 4
-        }
-        this._state.profilePage.posts.push(newPost)
-        this._state.profilePage.newPostText = ''
-        this._callSubscriber()
-    },
-    updateNewPostText(newText: string) {
-        this._state.profilePage.newPostText = newText
-        this._callSubscriber()
-    },
-    addMessage() {
-        let newMessage: MessageType = {
-            id: 4,
-            message: this._state.dialogsPage.newMessageText,
-        }
-        this._state.dialogsPage.messages.push(newMessage)
-        this._state.dialogsPage.newMessageText = ''
-        this._callSubscriber()
-    },
-    updateNewMessageText(newText: string) {
-        this._state.dialogsPage.newMessageText = newText
-        this._callSubscriber()
-    },
     subscribe(observer: () => void) {
         this._callSubscriber = observer
-    }
+    },
+    dispatch(action) {
+        if (action.type === 'ADD-POST') {
+            let newPost: PostType = {
+                id: 3,
+                message: this._state.profilePage.newPostText,
+                likesCount: 4
+            }
+            this._state.profilePage.posts.push(newPost)
+            this._state.profilePage.newPostText = ''
+            this._callSubscriber()
+        } else if (action.type === 'UPDATE-NEW-POST-TEXT') {
+            if (action.newText) {
+                this._state.profilePage.newPostText = action.newText
+                this._callSubscriber()
+            }
+        } else if (action.type === 'ADD-MESSAGE') {
+            let newMessage: MessageType = {
+                id: 4,
+                message: this._state.dialogsPage.newMessageText,
+            }
+            this._state.dialogsPage.messages.push(newMessage)
+            this._state.dialogsPage.newMessageText = ''
+            this._callSubscriber()
+        } else if (action.type === 'UPDATE-NEW-MESSAGE-TEXT') {
+            if (action.newText) {
+                this._state.dialogsPage.newMessageText = action.newText
+                this._callSubscriber()
+            }
+        }
+    },
 }
 
 export default store;
