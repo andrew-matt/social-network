@@ -1,5 +1,5 @@
 import profileReducer, {AddPostActionCreator, UpdateNewPostTextActionCreator} from "./Profile-reducer";
-import dialogsReducer, {AddMessageActionCreator, UpdateNewMessageActionCreator} from "./Dialogs-reducer";
+import dialogsReducer, {sendMessageCreator, UpdateNewMessageActionCreator} from "./Dialogs-reducer";
 
 export type PostType = {
     id: number
@@ -27,16 +27,16 @@ export type RootStateType = {
     profilePage: ProfilePageType
     dialogsPage: DialogPageType
 }
-export type ActionType =
+export type ActionTypes =
     ReturnType<typeof AddPostActionCreator>
     | ReturnType<typeof UpdateNewPostTextActionCreator>
-    | ReturnType<typeof AddMessageActionCreator>
+    | ReturnType<typeof sendMessageCreator>
     | ReturnType<typeof UpdateNewMessageActionCreator>
 export type StoreType = {
     _state: RootStateType
     getState: () => RootStateType
     _callSubscriber: (state: RootStateType) => void
-    dispatch: (action: ActionType) => void
+    dispatch: (action: ActionTypes) => void
     subscribe: (observer: () => void) => void
 }
 
