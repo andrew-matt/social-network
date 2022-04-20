@@ -1,13 +1,12 @@
-import store from "./Redux/Redux-Store";
+import store, {ReduxStateType} from "./Redux/Redux-Store";
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import {RootStateType} from "./Redux/Store";
-import {Provider} from "./StoreContext";
+import {Provider} from "react-redux";
 
-export function rerenderEntireTree(state: RootStateType) {
+export function rerenderEntireTree(state: ReduxStateType) {
     ReactDOM.render(
         <React.StrictMode>
             <Provider store={store}>

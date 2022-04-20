@@ -1,38 +1,38 @@
 import profileReducer, {AddPostActionCreator, UpdateNewPostTextActionCreator} from "./Profile-reducer";
 import dialogsReducer, {sendMessageCreator, UpdateNewMessageActionCreator} from "./Dialogs-reducer";
 
-export type PostType = {
+type PostType = {
     id: number
     message: string
     likesCount: number
 }
-export type DialogType = {
+type DialogType = {
     id: number
     name: string
 }
-export type MessageType = {
+type MessageType = {
     id: number
     message: string
 }
-export type ProfilePageType = {
+type ProfilePageType = {
     posts: Array<PostType>
     newPostText: string
 }
-export type DialogPageType = {
+type DialogPageType = {
     dialogs: Array<DialogType>
     messages: Array<MessageType>
     newMessageText: string
 }
-export type RootStateType = {
+type RootStateType = {
     profilePage: ProfilePageType
     dialogsPage: DialogPageType
 }
-export type ActionTypes =
+type ActionTypes =
     ReturnType<typeof AddPostActionCreator>
     | ReturnType<typeof UpdateNewPostTextActionCreator>
     | ReturnType<typeof sendMessageCreator>
     | ReturnType<typeof UpdateNewMessageActionCreator>
-export type StoreType = {
+type StoreType = {
     _state: RootStateType
     getState: () => RootStateType
     _callSubscriber: (state: RootStateType) => void
@@ -82,5 +82,3 @@ let store: StoreType = {
         this._callSubscriber(this._state)
     }
 }
-
-export default store;
