@@ -19,4 +19,12 @@ let rootReducer = combineReducers({
 
 let store: ReduxStoreType = createStore(rootReducer)
 
+declare global {
+    interface Window {
+        store: ReduxStoreType
+    }
+}
+
+window.store = store
+
 export default store;

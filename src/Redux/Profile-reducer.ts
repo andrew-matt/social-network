@@ -27,12 +27,21 @@ const profileReducer = (state: ProfilePageType = initialState, action: ActionTyp
                 message: state.newPostText,
                 likesCount: 4
             }
-            state.posts.push(newPost)
-            state.newPostText = ''
-            return state
+            return {
+                ...state,
+                posts: [
+                    ...state.posts,
+                    newPost
+                ],
+                newPostText: ''
+            }
         case UPDATE_NEW_POST_TEXT:
-            state.newPostText = action.newText
-            return state
+            let stateCopy = {
+                ...state,
+                posts: state.posts.map(p => ({...p}))
+            }
+            stateCopy.newPostText = action.newText
+            return stateCopy
         default:
             return state
     }

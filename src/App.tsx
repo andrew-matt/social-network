@@ -9,9 +9,7 @@ import {Music} from "./components/Music/Music";
 import {Settings} from "./components/Settings/Settings";
 import DialogsContainer from "./components/Dialogs/DialogsContainer";
 
-export type AppPropsType = {}
-
-const App: React.FC<AppPropsType> = (props) => {
+const App = () => {
     return (
         <BrowserRouter>
             <div className='app-wrapper'>
