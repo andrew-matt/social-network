@@ -32,7 +32,7 @@ export const Dialogs: React.FC<DialogsPropsType> = (props) => {
             </div>
             <div className={s.messages}>
                 {messageElements}
-                <div><textarea onChange={onMessageChange} value={state.newMessageText}/></div>
+                <div><textarea onChange={onMessageChange} value={state.newMessageBody}/></div>
                 <div><button onClick={addMessage}>Add message</button></div>
             </div>
         </div>

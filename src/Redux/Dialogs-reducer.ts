@@ -12,8 +12,8 @@ type MessageType = {
 
 export type DialogPageType = typeof initialState
 
-const ADD_MESSAGE = 'ADD-MESSAGE';
-const UPDATE_NEW_MESSAGE_TEXT = 'UPDATE-NEW-MESSAGE-TEXT';
+const SEND_MESSAGE = 'SEND-MESSAGE';
+const UPDATE_NEW_MESSAGE_BODY = 'UPDATE-NEW-MESSAGE-BODY';
 
 let initialState = {
     dialogs: [
@@ -28,32 +28,37 @@ let initialState = {
         {id: 2, message: "How are you"},
         {id: 3, message: "Hell yeah"}
     ] as MessageType[],
-    newMessageText: ''
+    newMessageBody: ''
 }
 
 const dialogsReducer = (state: DialogPageType = initialState, action: ActionTypes): DialogPageType => {
     switch (action.type) {
-        case ADD_MESSAGE:
-            let newMessage: MessageType = {
-                id: 4,
-                message: state.newMessageText,
+        case UPDATE_NEW_MESSAGE_BODY:
+            return {
+                ...state,
+                newMessageBody: action.body
             }
-            state.messages.push(newMessage)
-            state.newMessageText = ''
-            return state
-        case UPDATE_NEW_MESSAGE_TEXT:
-            state.newMessageText = action.newText
-            return state
+        case SEND_MESSAGE:
+            return {
+                ...state,
+                messages: [
+                    ...state.messages,
+                    {
+                        id: 4,
+                        message: state.newMessageBody,
+                    }
+                ],
+                newMessageBody: ''
+            }
         default:
             return state
     }
 }
 
-
-export const sendMessageCreator = () => ({type: ADD_MESSAGE} as const)
-export const UpdateNewMessageActionCreator = (newText: string) => ({
-    type: UPDATE_NEW_MESSAGE_TEXT,
-    newText: newText
+export const sendMessageCreator = () => ({type: SEND_MESSAGE} as const)
+export const UpdateNewMessageActionCreator = (body: string) => ({
+    type: UPDATE_NEW_MESSAGE_BODY,
+    body: body
 } as const)
 
 

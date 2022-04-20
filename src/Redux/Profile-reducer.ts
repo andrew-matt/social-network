@@ -36,12 +36,10 @@ const profileReducer = (state: ProfilePageType = initialState, action: ActionTyp
                 newPostText: ''
             }
         case UPDATE_NEW_POST_TEXT:
-            let stateCopy = {
+            return {
                 ...state,
-                posts: state.posts.map(p => ({...p}))
+                newPostText: action.newText
             }
-            stateCopy.newPostText = action.newText
-            return stateCopy
         default:
             return state
     }
