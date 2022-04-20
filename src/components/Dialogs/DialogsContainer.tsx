@@ -1,6 +1,5 @@
 import React from 'react';
 import {sendMessageCreator, UpdateNewMessageActionCreator} from "../../Redux/Dialogs-reducer";
-import store from "../../Redux/Redux-Store";
 import StoreContext from '../../StoreContext';
 import {Dialogs} from "./Dialogs";
 

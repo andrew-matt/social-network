@@ -7,7 +7,7 @@ export type ReduxStoreType = Store<ReduxStateType, ActionTypes>
 
 type RootState = typeof rootReducers
 
-type ReduxStateType = ReturnType<RootState>
+export type ReduxStateType = ReturnType<RootState>
 
 let rootReducers = combineReducers({
     profilePage: profileReducer,
