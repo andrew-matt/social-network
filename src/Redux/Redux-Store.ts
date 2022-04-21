@@ -1,12 +1,16 @@
 import {combineReducers, createStore, Store} from "redux";
 import profileReducer, {AddPostActionCreator, UpdateNewPostTextActionCreator} from "./Profile-reducer";
-import dialogsReducer, {sendMessageCreator, UpdateNewMessageActionCreator} from "./Dialogs-reducer";
+import dialogsReducer, {SendMessageAC, UpdateNewMessageAC} from "./Dialogs-reducer";
+import usersReducer, {FollowAC, SetUsersAC, UnfollowAC} from "./Users-reducer";
 
 export type ActionTypes =
     ReturnType<typeof AddPostActionCreator>
     | ReturnType<typeof UpdateNewPostTextActionCreator>
-    | ReturnType<typeof sendMessageCreator>
-    | ReturnType<typeof UpdateNewMessageActionCreator>
+    | ReturnType<typeof SendMessageAC>
+    | ReturnType<typeof UpdateNewMessageAC>
+    | ReturnType<typeof FollowAC>
+    | ReturnType<typeof UnfollowAC>
+    | ReturnType<typeof SetUsersAC>
 
 export type ReduxStoreType = Store<ReduxStateType, ActionTypes>
 
@@ -14,7 +18,8 @@ export type ReduxStateType = ReturnType<typeof rootReducer>
 
 let rootReducer = combineReducers({
     profilePage: profileReducer,
-    dialogsPage: dialogsReducer
+    dialogsPage: dialogsReducer,
+    usersPage: usersReducer,
 })
 
 let store: ReduxStoreType = createStore(rootReducer)

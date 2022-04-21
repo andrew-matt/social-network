@@ -1,5 +1,5 @@
 import profileReducer, {AddPostActionCreator, UpdateNewPostTextActionCreator} from "./Profile-reducer";
-import dialogsReducer, {sendMessageCreator, UpdateNewMessageActionCreator} from "./Dialogs-reducer";
+import dialogsReducer, {SendMessageAC, UpdateNewMessageAC} from "./Dialogs-reducer";
 
 type PostType = {
     id: number
@@ -30,8 +30,8 @@ type RootStateType = {
 type ActionTypes =
     ReturnType<typeof AddPostActionCreator>
     | ReturnType<typeof UpdateNewPostTextActionCreator>
-    | ReturnType<typeof sendMessageCreator>
-    | ReturnType<typeof UpdateNewMessageActionCreator>
+    | ReturnType<typeof SendMessageAC>
+    | ReturnType<typeof UpdateNewMessageAC>
 type StoreType = {
     _state: RootStateType
     getState: () => RootStateType
@@ -82,3 +82,5 @@ let store: StoreType = {
         this._callSubscriber(this._state)
     }
 }
+
+console.log(store)

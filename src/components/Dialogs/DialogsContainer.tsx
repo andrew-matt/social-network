@@ -1,7 +1,7 @@
 import {
     DialogPageType,
-    sendMessageCreator,
-    UpdateNewMessageActionCreator
+    SendMessageAC,
+    UpdateNewMessageAC
 } from "../../Redux/Dialogs-reducer";
 import {Dialogs} from "./Dialogs";
 import {connect} from "react-redux";
@@ -26,10 +26,10 @@ const mapStateToProps = (state: ReduxStateType): MapStateToPropsType => {
 const mapDispatchToProps = (dispatch: Dispatch): MapDispatchToPropsType => {
     return {
         updateNewMessageBody: (body: string) => {
-            dispatch(UpdateNewMessageActionCreator(body))
+            dispatch(UpdateNewMessageAC(body))
         },
         sendMessage: () => {
-            dispatch(sendMessageCreator())
+            dispatch(SendMessageAC())
         }
     }
 }
