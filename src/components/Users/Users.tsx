@@ -1,6 +1,8 @@
 import {UsersType} from "../../Redux/Users-reducer";
 import s from './Users.module.css'
 import React from "react";
+import axios from "axios";
+import userPhoto from '../../assets/images/user.jpg'
 
 type UsersPropsType = {
     users: UsersType[]
@@ -10,6 +12,13 @@ type UsersPropsType = {
 }
 
 export const Users: React.FC<UsersPropsType> = (props) => {
+
+    if (props.users.length === 0) {
+        axios.get("https://social-network.samuraijs.com/api/1.0/users").then(response => {
+            props.setUsers(response.data.items)
+        });
+    }
+
     return (
         <div>
             {
@@ -18,7 +27,7 @@ export const Users: React.FC<UsersPropsType> = (props) => {
                         <div key={u.id}>
                             <span>
                                 <div>
-                                    <img src={u.photoUrl} alt={'avatar'} className={s.userPhoto}/>
+                                    <img src={u.photos.small !== null ? u.photos.small : userPhoto} alt={'avatar'} className={s.userPhoto}/>
                                 </div>
                                 <div>
                                     {
@@ -30,12 +39,12 @@ export const Users: React.FC<UsersPropsType> = (props) => {
                             </span>
                             <span>
                                 <span>
-                                    <div>{u.fullName}</div>
+                                    <div>{u.name}</div>
                                     <div>{u.status}</div>
                                 </span>
                                 <span>
-                                    <div>{u.location.country}</div>
-                                    <div>{u.location.city}</div>
+                                    <div>{"u.location.country"}</div>
+                                    <div>{"u.location.city"}</div>
                                 </span>
                             </span>
                         </div>

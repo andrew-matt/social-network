@@ -2,9 +2,11 @@ import {ActionTypes} from "./Redux-Store";
 
 export type UsersType = {
     id: number
-    photoUrl: string
+    photos: {
+        small: string
+    }
     followed: boolean
-    fullName: string
+    name: string
     status: string
     location: {
         city: string
@@ -19,40 +21,7 @@ const UNFOLLOW = 'UNFOLLOW'
 const SET_USERS = 'SET_USERS'
 
 const initialState = {
-    users: [
-        {
-            id: 1,
-            photoUrl: 'https://resizer.mail.ru/p/7a1e86df-9686-5098-963e-27304c6f1133/AAACY37OntEVxnf9OOUuLkcQpyEwVtb3AZgK14eU9OI6IljiYtBizDmEp-vG8UfPC3h-OB130PE-ba1mk1rY6S-3Zek.jpg',
-            followed: true,
-            fullName: "Bob",
-            status: "Hell yeah",
-            location: {city: "Washington", country: "USA"}
-        },
-        {
-            id: 2,
-            photoUrl: 'https://resizer.mail.ru/p/7a1e86df-9686-5098-963e-27304c6f1133/AAACY37OntEVxnf9OOUuLkcQpyEwVtb3AZgK14eU9OI6IljiYtBizDmEp-vG8UfPC3h-OB130PE-ba1mk1rY6S-3Zek.jpg',
-            followed: false,
-            fullName: "John",
-            status: "Sonic Boom",
-            location: {city: "Moscow", country: "Russia"}
-        },
-        {
-            id: 3,
-            photoUrl: 'https://resizer.mail.ru/p/7a1e86df-9686-5098-963e-27304c6f1133/AAACY37OntEVxnf9OOUuLkcQpyEwVtb3AZgK14eU9OI6IljiYtBizDmEp-vG8UfPC3h-OB130PE-ba1mk1rY6S-3Zek.jpg',
-            followed: false,
-            fullName: "Ann",
-            status: "Get over here",
-            location: {city: "Berlin", country: "Germany"}
-        },
-        {
-            id: 4,
-            photoUrl: 'https://resizer.mail.ru/p/7a1e86df-9686-5098-963e-27304c6f1133/AAACY37OntEVxnf9OOUuLkcQpyEwVtb3AZgK14eU9OI6IljiYtBizDmEp-vG8UfPC3h-OB130PE-ba1mk1rY6S-3Zek.jpg',
-            followed: true,
-            fullName: "Helen",
-            status: "Make some noise",
-            location: {city: "Oslo", country: "Norway"}
-        },
-    ] as UsersType[]
+    users: [] as UsersType[]
 }
 
 const usersReducer = (state: UsersPageType = initialState, action: ActionTypes): UsersPageType => {
