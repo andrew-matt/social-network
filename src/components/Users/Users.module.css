@@ -3,3 +3,22 @@
     height: 100px;
     border-radius: 50%;
 }
+
+.pages {
+    width: fit-content;
+    display: flex;
+    justify-content: space-between;
+}
+
+.page_number {
+    margin: 0 5px 0 5px;
+    cursor: pointer;
+}
+
+.page_number:hover {
+    color: darkorange;
+}
+
+.selected {
+    font-weight: bold;
+}
