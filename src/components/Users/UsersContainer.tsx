@@ -13,6 +13,7 @@ import React from "react";
 import axios from "axios";
 import Users from "./Users";
 import preloader from "../../assets/images/preloader.svg"
+import Preloader from "../common/Preloader/Preloader";
 
 type UsersContainerPropsType = {
     users: UsersType[]
@@ -51,7 +52,7 @@ class UsersContainer extends React.Component<UsersContainerPropsType> {
     render() {
         return (
             <>
-                {this.props.isFetching ? <img src={preloader}/> : null}
+                {this.props.isFetching ? <Preloader/> : null}
                 <Users
                     users={this.props.users}
                     follow={this.props.follow}
