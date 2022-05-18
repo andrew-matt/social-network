@@ -2,17 +2,16 @@ import {connect} from "react-redux";
 import {ReduxStateType} from "../../Redux/Redux-Store";
 import {
     follow,
-    setCurrentPage, toggleIsFetching,
+    setCurrentPage,
     setTotalUsersCount,
     setUsers,
+    toggleIsFetching,
     unfollow,
     UsersType
 } from "../../Redux/Users-reducer";
-import {Dispatch} from "redux";
 import React from "react";
 import axios from "axios";
 import Users from "./Users";
-import preloader from "../../assets/images/preloader.svg"
 import Preloader from "../common/Preloader/Preloader";
 
 type UsersContainerPropsType = {
