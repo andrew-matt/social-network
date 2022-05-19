@@ -6,33 +6,38 @@ export type PostType = {
     likesCount: number
 }
 
-export type ProfilePageType = typeof initialState
-// export type UserProfileType = {
-//     userId: number
-//     lookingForAJob: boolean
-//     lookingForAJobDescription: string
-//     fullName: string
-//     contacts: {
-//         github: string
-//         vk: string
-//         facebook: string
-//         instagram: string
-//         twitter: string
-//         website: string
-//         youtube: string
-//         mainLink: string
-//     }
-//     photos: {
-//         small: string
-//         large: string
-//     }
-// }
+export type ProfilePageType = {
+    posts: PostType[]
+    newPostText: string
+    profile: null | UserProfileType
+}
+export type UserProfileType = {
+    aboutMe: string
+    userId: number
+    lookingForAJob: boolean
+    lookingForAJobDescription: string
+    fullName: string
+    contacts: {
+        github: string
+        vk: string
+        facebook: string
+        instagram: string
+        twitter: string
+        website: string
+        youtube: string
+        mainLink: string
+    }
+    photos: {
+        small: string
+        large: string
+    }
+}
 
 const ADD_POST = 'ADD-POST';
 const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
 const SET_USER_PROFILE = 'SET_USER_PROFILE';
 
-let initialState = {
+let initialState: ProfilePageType = {
     posts: [
         {id: 1, message: "Hi, how are you?", likesCount: 15},
         {id: 2, message: "It's my first post!", likesCount: 20}
@@ -41,7 +46,7 @@ let initialState = {
     profile: null
 }
 
-const profileReducer = (state: ProfilePageType = initialState, action: ActionTypes): ProfilePageType => {
+const profileReducer = (state = initialState, action: ActionTypes): ProfilePageType => {
     switch (action.type) {
         case ADD_POST:
             let newPost: PostType = {
@@ -77,7 +82,7 @@ export const UpdateNewPostTextActionCreator = (newText: string) => ({
     type: UPDATE_NEW_POST_TEXT,
     newText: newText
 } as const)
-export const setUserProfile = (profile: any) => ({
+export const setUserProfile = (profile: UserProfileType) => ({
     type: SET_USER_PROFILE,
     profile: profile
 } as const)
