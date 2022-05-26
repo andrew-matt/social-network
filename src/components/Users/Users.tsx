@@ -13,6 +13,8 @@ type UsersPropsType = {
     totalUsersCount: number
     currentPage: number
     onPageChanged: (pageNumber: number) => void
+    toggleFollowingProgress: (isFetching: boolean) => void
+    followingInProgress: boolean
 }
 
 const Users: React.FC<UsersPropsType> = (props) => {
@@ -54,18 +56,22 @@ const Users: React.FC<UsersPropsType> = (props) => {
                                 <div>
                                     {
                                         u.followed
-                                            ? <button onClick={() => {
+                                            ? <button disabled={props.followingInProgress} onClick={() => {
+                                                props.toggleFollowingProgress(true)
                                                 usersAPI.unfollowUser(u.id).then(data => {
                                                     if (data.resultCode === 0) {
                                                         props.unfollow(u.id)
                                                     }
+                                                    props.toggleFollowingProgress(false)
                                                 })
                                             }}>Unfollow</button>
-                                            : <button onClick={() => {
+                                            : <button disabled={props.followingInProgress} onClick={() => {
+                                                props.toggleFollowingProgress(true)
                                                 usersAPI.followUser(u.id).then(data => {
                                                     if (data.resultCode === 0) {
                                                         props.follow(u.id)
                                                     }
+                                                    props.toggleFollowingProgress(false)
                                                 })
                                             }}>Follow</button>
                                     }

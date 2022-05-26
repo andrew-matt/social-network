@@ -7,7 +7,7 @@ import usersReducer, {
     toggleIsFetching,
     setTotalUsersCount,
     setUsers,
-    unfollow
+    unfollow, toggleFollowingProgress
 } from "./Users-reducer";
 import authReducer, {setUserData} from "./Auth-reducer";
 
@@ -24,6 +24,7 @@ export type ActionTypes =
     | ReturnType<typeof setTotalUsersCount>
     | ReturnType<typeof toggleIsFetching>
     | ReturnType<typeof setUserData>
+    | ReturnType<typeof toggleFollowingProgress>
 
 export type ReduxStoreType = Store<ReduxStateType, ActionTypes>
 
