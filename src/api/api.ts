@@ -32,5 +32,11 @@ export const usersAPI = {
             instance.get('auth/me')
                 .then(response => response.data)
         )
+    },
+    moveToProfilePage(userId: number | string) {
+        return (
+            instance.get(`profile/` + userId)
+                .then(response => response.data)
+        )
     }
 }

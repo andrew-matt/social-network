@@ -1,13 +1,12 @@
 import React from 'react';
 import {Profile} from "./Profile";
-import axios from "axios";
 import {connect} from "react-redux";
-import {setUserProfile, UserProfileType} from "../../Redux/Profile-reducer";
+import {moveToProfilePage, UserProfileType} from "../../Redux/Profile-reducer";
 import {ReduxStateType} from "../../Redux/Redux-Store";
 import {useLocation, useNavigate, useParams} from "react-router-dom";
 
 type ProfileContainerPropsType = {
-    setUserProfile: (profile: UserProfileType) => void
+    moveToProfilePage: (userId: number | string) => void
     profile: UserProfileType
     router: {
         params: {
@@ -26,9 +25,7 @@ class ProfileContainer extends React.Component<ProfileContainerPropsType> {
             userId = 2;
         }
 
-        axios.get(`https://social-network.samuraijs.com/api/1.0/profile/` + userId).then(response => {
-            this.props.setUserProfile(response.data);
-        });
+        this.props.moveToProfilePage(userId)
     }
 
     render() {
@@ -56,7 +53,7 @@ function withRouter(Component: any) {
         return (
             <Component
                 {...props}
-                router={{ location, navigate, params }}
+                router={{location, navigate, params}}
             />
         );
     }
@@ -64,4 +61,4 @@ function withRouter(Component: any) {
     return ComponentWithRouterProp;
 }
 
-export default connect(mapStateToProps, {setUserProfile})(withRouter(ProfileContainer));
+export default connect(mapStateToProps, {moveToProfilePage})(withRouter(ProfileContainer));

@@ -1,7 +1,6 @@
 import {ActionTypes} from "./Redux-Store";
 import {Dispatch} from "redux";
 import {usersAPI} from "../api/api";
-import {toggleFollowingProgress, unfollowSuccess} from "./Users-reducer";
 
 export type PostType = {
     id: number
@@ -89,5 +88,11 @@ export const setUserProfile = (profile: UserProfileType) => ({
     type: SET_USER_PROFILE,
     profile: profile
 } as const)
+
+export const moveToProfilePage = (userId: number | string) => (dispatch: Dispatch) => {
+    usersAPI.moveToProfilePage(userId).then(data => {
+        dispatch(setUserProfile(data));
+    });
+}
 
 export default profileReducer;
