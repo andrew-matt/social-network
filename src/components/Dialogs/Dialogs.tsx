@@ -3,11 +3,13 @@ import s from './Dialogs.module.css';
 import {DialogItem} from "./DialogItem/DialogItem";
 import {Message,} from './Message/Message';
 import {DialogPageType} from "../../Redux/Dialogs-reducer";
+import {Navigate} from "react-router-dom";
 
 export type DialogsPropsType = {
     dialogsPage: DialogPageType
     updateNewMessageBody: (body: string) => void
     sendMessage: () => void
+    isAuth: boolean
 }
 
 export const Dialogs: React.FC<DialogsPropsType> = (props) => {
@@ -24,6 +26,8 @@ export const Dialogs: React.FC<DialogsPropsType> = (props) => {
     const onMessageChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
         props.updateNewMessageBody(e.currentTarget.value)
     }
+
+    if (!props.isAuth) return <Navigate to={'/Login'}/>
 
     return (
         <div className={s.dialogs}>

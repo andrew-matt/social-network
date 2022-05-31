@@ -89,8 +89,8 @@ export const setUserProfile = (profile: UserProfileType) => ({
     profile: profile
 } as const)
 
-export const moveToProfilePage = (userId: number | string) => (dispatch: Dispatch) => {
-    usersAPI.moveToProfilePage(userId).then(data => {
+export const getUserProfile = (userId: number | string) => (dispatch: Dispatch) => {
+    usersAPI.getProfile(userId).then(data => {
         dispatch(setUserProfile(data));
     });
 }
