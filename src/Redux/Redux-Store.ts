@@ -1,4 +1,4 @@
-import {combineReducers, createStore, Store} from "redux";
+import {applyMiddleware, combineReducers, createStore, Store} from "redux";
 import profileReducer, {AddPostActionCreator, setUserProfile, UpdateNewPostTextActionCreator} from "./Profile-reducer";
 import dialogsReducer, {SendMessageAC, UpdateNewMessageAC} from "./Dialogs-reducer";
 import usersReducer, {
@@ -10,6 +10,7 @@ import usersReducer, {
     unfollow, toggleFollowingProgress
 } from "./Users-reducer";
 import authReducer, {setUserData} from "./Auth-reducer";
+import thunkMiddleware from "redux-thunk";
 
 export type ActionTypes =
     ReturnType<typeof AddPostActionCreator>
@@ -37,7 +38,7 @@ let rootReducer = combineReducers({
     auth: authReducer,
 })
 
-let store: ReduxStoreType = createStore(rootReducer)
+let store: ReduxStoreType = createStore(rootReducer, applyMiddleware(thunkMiddleware))
 
 declare global {
     interface Window {
