@@ -15,15 +15,21 @@ export const usersAPI = {
                 .then(response => response.data)
         )
     },
-    unfollowUser(userId: number) {
+    unfollow(userId: number) {
         return (
             instance.delete(`follow/${userId}`)
                 .then(response => response.data)
         )
     },
-    followUser(userId: number) {
+    follow(userId: number) {
         return (
             instance.post(`follow/${userId}`)
+                .then(response => response.data)
+        )
+    },
+    getLogged() {
+        return (
+            instance.get('auth/me')
                 .then(response => response.data)
         )
     }

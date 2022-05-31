@@ -1,4 +1,7 @@
 import {ActionTypes} from "./Redux-Store";
+import {Dispatch} from "redux";
+import {usersAPI} from "../api/api";
+import {toggleFollowingProgress, unfollowSuccess} from "./Users-reducer";
 
 export type PostType = {
     id: number

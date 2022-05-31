@@ -1,4 +1,7 @@
 import {ActionTypes} from "./Redux-Store";
+import {Dispatch} from "redux";
+import {toggleFollowingProgress, unfollowSuccess} from "./Users-reducer";
+import {usersAPI} from "../api/api";
 
 export type AuthType = {
     userId: number | null
@@ -29,6 +32,20 @@ const authReducer = (state = initialState, action: ActionTypes): AuthType => {
     }
 }
 
-export const setUserData = (userId: number, email: string, login: string) => ({type: SET_USER_DATA, data: {userId: userId, email: email, login: login}} as const)
+export const setUserData = (userId: number, email: string, login: string) => ({
+    type: SET_USER_DATA,
+    data: {userId: userId, email: email, login: login}
+} as const)
+
+export const getLogged = () => (dispatch: Dispatch) => {
+    usersAPI.getLogged()
+        .then(data => {
+            if (data.resultCode === 0) {
+                let {id, email, login} = data.data
+                dispatch(setUserData(id, email, login));
+            }
+        })
+}
+
 
 export default authReducer;
