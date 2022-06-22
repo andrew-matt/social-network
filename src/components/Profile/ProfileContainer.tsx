@@ -1,9 +1,9 @@
-import React from 'react';
+import React, {ComponentType} from 'react';
 import {Profile} from './Profile';
 import {connect} from 'react-redux';
 import {getUserProfile, UserProfileType} from '../../Redux/Profile-reducer';
 import {ReduxStateType} from '../../Redux/Redux-Store';
-import {Navigate, useLocation, useNavigate, useParams} from 'react-router-dom';
+import {useLocation, useNavigate, useParams} from 'react-router-dom';
 import {withAuthRedirect} from '../../hoc/withAuthRedirect';
 
 type ProfileContainerPropsType = {
@@ -37,22 +37,18 @@ class ProfileContainer extends React.Component<ProfileContainerPropsType> {
     }
 }
 
-let AuthRedirectComponent = withAuthRedirect(ProfileContainer)
-
 type MapStateToPropsType = {
     profile: UserProfileType | null
-    isAuth: boolean
 }
 
 const mapStateToProps = (state: ReduxStateType): MapStateToPropsType => {
     return {
         profile: state.profilePage.profile,
-        isAuth: state.auth.isAuth
     }
 }
 
-function withRouter(Component: any) {
-    function ComponentWithRouterProp(props: any) {
+function withRouter<T>(Component: ComponentType<T>) {
+    function ComponentWithRouterProp(props: T) {
         let location = useLocation();
         let navigate = useNavigate();
         let params = useParams();
@@ -67,4 +63,4 @@ function withRouter(Component: any) {
     return ComponentWithRouterProp;
 }
 
-export default connect(mapStateToProps, {getUserProfile})(withRouter(AuthRedirectComponent));
+export default connect(mapStateToProps, {getUserProfile})(withRouter(withAuthRedirect(ProfileContainer)));
