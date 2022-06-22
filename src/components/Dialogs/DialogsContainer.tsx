@@ -3,10 +3,13 @@ import {
     SendMessageAC,
     UpdateNewMessageAC
 } from "../../Redux/Dialogs-reducer";
-import {Dialogs} from "./Dialogs";
+import {Dialogs, DialogsPropsType} from './Dialogs';
 import {connect} from "react-redux";
 import {ReduxStateType} from "../../Redux/Redux-Store";
 import {Dispatch} from "redux";
+import {Navigate} from 'react-router-dom';
+import React from 'react';
+import {withAuthRedirect} from '../../hoc/withAuthRedirect';
 
 type MapStateToPropsType = {
     dialogsPage: DialogPageType
@@ -36,7 +39,9 @@ const mapDispatchToProps = (dispatch: Dispatch): MapDispatchToPropsType => {
     }
 }
 
-const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(Dialogs);
+let AuthRedirectComponent = withAuthRedirect(Dialogs)
+
+const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(AuthRedirectComponent);
 
 
 export default DialogsContainer;
