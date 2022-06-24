@@ -6,6 +6,8 @@ import ProfileStatus from './ProfileStatus';
 
 type ProfileInfoPropsType = {
     profile: UserProfileType
+    status: string
+    updateStatus: (status: string) => void
 }
 
 const ProfileInfo: React.FC<ProfileInfoPropsType> = (props) => {
@@ -23,7 +25,7 @@ const ProfileInfo: React.FC<ProfileInfoPropsType> = (props) => {
             {/*</div>*/}
             <div className={s.descriptionBlock}>
                 <img src={props.profile.photos.large}/>
-                <ProfileStatus status={'Hello my friends'}/>
+                <ProfileStatus status={props.status}/>
             </div>
         </div>
     )

@@ -1,5 +1,5 @@
 import {applyMiddleware, combineReducers, createStore, Store} from "redux";
-import profileReducer, {AddPostActionCreator, setUserProfile, UpdateNewPostTextActionCreator} from "./Profile-reducer";
+import profileReducer, {AddPost, setUserProfile, setStatus, UpdateNewPostText} from './Profile-reducer';
 import dialogsReducer, {SendMessageAC, UpdateNewMessageAC} from "./Dialogs-reducer";
 import usersReducer, {
     followSuccess,
@@ -13,8 +13,8 @@ import authReducer, {setUserData} from "./Auth-reducer";
 import thunkMiddleware from "redux-thunk";
 
 export type ActionTypes =
-    ReturnType<typeof AddPostActionCreator>
-    | ReturnType<typeof UpdateNewPostTextActionCreator>
+    ReturnType<typeof AddPost>
+    | ReturnType<typeof UpdateNewPostText>
     | ReturnType<typeof setUserProfile>
     | ReturnType<typeof SendMessageAC>
     | ReturnType<typeof UpdateNewMessageAC>
@@ -26,6 +26,7 @@ export type ActionTypes =
     | ReturnType<typeof toggleIsFetching>
     | ReturnType<typeof setUserData>
     | ReturnType<typeof toggleFollowingProgress>
+    | ReturnType<typeof setStatus>
 
 export type ReduxStoreType = Store<ReduxStateType, ActionTypes>
 

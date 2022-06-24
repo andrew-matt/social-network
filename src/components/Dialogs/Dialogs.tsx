@@ -1,9 +1,8 @@
 import React, {ChangeEvent} from 'react';
 import s from './Dialogs.module.css';
-import {DialogItem} from "./DialogItem/DialogItem";
+import {DialogItem} from './DialogItem/DialogItem';
 import {Message,} from './Message/Message';
-import {DialogPageType} from "../../Redux/Dialogs-reducer";
-import {Navigate} from "react-router-dom";
+import {DialogPageType} from '../../Redux/Dialogs-reducer';
 
 export type DialogsPropsType = {
     dialogsPage: DialogPageType
