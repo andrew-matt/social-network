@@ -24,7 +24,6 @@ const authReducer = (state = initialState, action: ActionTypes): AuthType => {
             return {
                 ...state,
                 ...action.payload,
-                isAuth: true,
             };
         default:
             return state;
