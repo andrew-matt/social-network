@@ -6,7 +6,7 @@ import {login} from '../../Redux/Auth-reducer';
 import {connect} from 'react-redux';
 import {Navigate} from 'react-router-dom';
 import {ReduxStateType} from '../../Redux/Redux-Store';
-import {DialogPageType} from '../../Redux/Dialogs-reducer';
+import styles from '../common/FormControls/FormsControls.module.css';
 
 type FormDataType = {
     email: string
@@ -37,6 +37,12 @@ export const LoginForm: React.FC<InjectedFormProps<FormDataType>> = (props) => {
             <div>
                 <Field type={'checkbox'} name={'rememberMe'} component={'input'}/> remember me
             </div>
+            {
+                props.error &&
+                <div className={styles.formSummaryError}>
+                    {props.error}
+                </div>
+            }
             <button>Login</button>
         </form>
     );
@@ -44,7 +50,12 @@ export const LoginForm: React.FC<InjectedFormProps<FormDataType>> = (props) => {
 
 const LoginReduxForm = reduxForm<FormDataType>({form: 'login'})(LoginForm);
 
-const Login = (props: any) => {
+type LoginPropsType = {
+    isAuth: boolean
+    login: (email: string, password: string, rememberMe: boolean) => void
+}
+
+const Login = (props: LoginPropsType) => {
     const onSubmit = (formData: FormDataType) => {
         props.login(formData.email, formData.password, formData.rememberMe);
     };

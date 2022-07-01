@@ -18,40 +18,46 @@ type ProfileContainerPropsType = {
     }
     isAuth: boolean
     status: string
+    authorizedUserId: number | null
 }
 
 class ProfileContainer extends React.Component<ProfileContainerPropsType> {
 
     componentDidMount() {
 
-        let userId: number = this.props.router.params.userId
+        let userId: number = this.props.router.params.userId;
 
         if (!userId) {
-            userId = 23651;
+            userId = this.props.authorizedUserId !== null ? this.props.authorizedUserId : 23651;
         }
 
-        this.props.getUserProfile(userId)
-        this.props.getStatus(userId)
+        this.props.getUserProfile(userId);
+        this.props.getStatus(userId);
     }
 
     render() {
         return (
-            <Profile profile={this.props.profile} status={this.props.status || '-----'} updateStatus={this.props.updateStatus}/>
-        )
+            <Profile profile={this.props.profile} status={this.props.status || '-----'}
+                     updateStatus={this.props.updateStatus}/>
+        );
     }
 }
 
 type MapStateToPropsType = {
     profile: UserProfileType | null
     status: string
+    authorizedUserId: number | null
+    isAuth: boolean
 }
 
 const mapStateToProps = (state: ReduxStateType): MapStateToPropsType => {
     return {
         profile: state.profilePage.profile,
         status: state.profilePage.status,
-    }
-}
+        authorizedUserId: state.auth.userId,
+        isAuth: state.auth.isAuth
+    };
+};
 
 function withRouter<T>(Component: ComponentType<T>) {
     function ComponentWithRouterProp(props: T) {
@@ -72,4 +78,4 @@ function withRouter<T>(Component: ComponentType<T>) {
 export default compose<React.ComponentType>(
     connect(mapStateToProps, {getUserProfile, getStatus, updateStatus}),
     withRouter,
-)(ProfileContainer)
+)(ProfileContainer);

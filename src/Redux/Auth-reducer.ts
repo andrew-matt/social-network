@@ -1,6 +1,7 @@
 import {ActionTypes} from './Redux-Store';
 import {Dispatch} from 'redux';
 import {authAPI} from '../api/api';
+import {stopSubmit} from 'redux-form';
 
 export type AuthType = {
     userId: number | null
@@ -50,6 +51,9 @@ export const login = (email: string, password: string, rememberMe: boolean) => (
         .then(response => {
             if (response.data.resultCode === 0) {
                 dispatch(getUserData() as any);
+            } else {
+                const message = response.data.messages.length > 0 ? response.data.messages[0] : 'Some error'
+                dispatch(stopSubmit('login', {_error: message}));
             }
         });
 };

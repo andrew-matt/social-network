@@ -9,15 +9,17 @@ export const FormControl = (props: any) => {
             <div>
                 {props.children}
             </div>
-            {showError && <span className={styles.error}>some error</span>}
+            {showError && <span>{props.meta.error}</span>}
         </div>
     );
 };
 
 export const Textarea = (props: any) => {
-    return <FormControl {...props}><textarea {...props.input}/></FormControl>
+    const {input, meta, child, ...restProps} = props
+    return <FormControl {...props}><textarea {...input} {...restProps}/></FormControl>
 };
 
 export const Input = (props: any) => {
-    return <FormControl {...props}><input {...props.input} placeholder={props.placeholder} type={props.type}/></FormControl>
+    const {input, meta, child, ...restProps} = props
+    return <FormControl {...props}><input {...input} {...restProps}/></FormControl>
 };
