@@ -19,5 +19,5 @@ export const Textarea = (props: any) => {
 };
 
 export const Input = (props: any) => {
-    return <FormControl {...props}><input {...props.input} placeholder={props.placeholder}/></FormControl>
+    return <FormControl {...props}><input {...props.input} placeholder={props.placeholder} type={props.type}/></FormControl>
 };
