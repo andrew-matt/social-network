@@ -9,3 +9,5 @@ export const maxLengthCreator = (maxLength: number) => (value: string) => {
 
     return undefined;
 };
+
+export const maxLength10 = maxLengthCreator(10);

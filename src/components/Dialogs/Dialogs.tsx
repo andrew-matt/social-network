@@ -5,7 +5,7 @@ import {Message} from './Message/Message';
 import {DialogPageType} from '../../Redux/Dialogs-reducer';
 import {Field, InjectedFormProps, reduxForm} from 'redux-form';
 import {Textarea} from '../common/FormControls/FormControls';
-import {maxLengthCreator, required} from '../../utils/validators';
+import {maxLength10, maxLengthCreator, required} from '../../utils/validators';
 
 
 export type DialogsPropsType = {
@@ -17,8 +17,6 @@ export type DialogsPropsType = {
 type DialogsFormDataType = {
     newMessageBody: string
 }
-
-const maxLength10 = maxLengthCreator(10);
 
 const AddMessageForm: React.FC<InjectedFormProps<DialogsFormDataType>> = (props) => {
     return (

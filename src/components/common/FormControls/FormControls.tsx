@@ -11,3 +11,15 @@ export const Textarea = (props: any) => {
         </div>
     );
 };
+
+export const Input = (props: any) => {
+
+    const showError = props.meta.touched && props.meta.error
+
+    return (
+        <div className={styles.formControl + ' ' + (showError && styles.error)}>
+            <div><input {...props.input} placeholder={props.placeholder}/></div>
+            {showError && <span className={styles.error}>some error</span>}
+        </div>
+    );
+};
