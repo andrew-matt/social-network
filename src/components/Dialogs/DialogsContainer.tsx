@@ -12,7 +12,7 @@ type MapStateToPropsType = {
 
 type MapDispatchToPropsType = {
     updateNewMessageBody: (body: string) => void
-    sendMessage: () => void
+    sendMessage: (newMessageBody: string) => void
 }
 
 const mapStateToProps = (state: ReduxStateType): MapStateToPropsType => {
@@ -26,8 +26,8 @@ const mapDispatchToProps = (dispatch: Dispatch): MapDispatchToPropsType => {
         updateNewMessageBody: (body: string) => {
             dispatch(UpdateNewMessageAC(body))
         },
-        sendMessage: () => {
-            dispatch(SendMessageAC())
+        sendMessage: (newMessageBody: string) => {
+            dispatch(SendMessageAC(newMessageBody))
         }
     }
 }

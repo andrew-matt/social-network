@@ -1,30 +1,55 @@
 import React, {ChangeEvent} from 'react';
 import s from './Dialogs.module.css';
 import {DialogItem} from './DialogItem/DialogItem';
-import {Message,} from './Message/Message';
+import {Message} from './Message/Message';
 import {DialogPageType} from '../../Redux/Dialogs-reducer';
+import {Field, InjectedFormProps, reduxForm} from 'redux-form';
+
 
 export type DialogsPropsType = {
     dialogsPage: DialogPageType
     updateNewMessageBody: (body: string) => void
-    sendMessage: () => void
+    sendMessage: (newMessageBody: string) => void
     isAuth: boolean
 }
 
+type DialogsFormDataType = {
+    newMessageBody: string
+}
+
+const AddMessageForm: React.FC<InjectedFormProps<DialogsFormDataType>> = (props) => {
+    return (
+        <form onSubmit={props.handleSubmit}>
+            <div>
+                <Field name={'newMessageBody'} component={'textarea'}/>
+            </div>
+            <div>
+                <button>Add message</button>
+            </div>
+        </form>
+    );
+};
+
+export const AddMessageReduxForm = reduxForm<DialogsFormDataType>({form: 'dialogAddMessageForm'})(AddMessageForm);
+
 export const Dialogs: React.FC<DialogsPropsType> = (props) => {
 
-    let state = props.dialogsPage
+    const onSubmit = (formData: DialogsFormDataType) => {
+        console.log(formData.newMessageBody);
+    };
+
+    let state = props.dialogsPage;
 
     let dialogElements = props.dialogsPage.dialogs.map(d => <DialogItem key={d.id} name={d.name} id={d.id}/>);
     let messageElements = props.dialogsPage.messages.map(m => <Message key={m.id} message={m.message}/>);
 
-    const addMessage = () => {
-       props.sendMessage()
-    }
+    const addMessage = (formData: DialogsFormDataType) => {
+        props.sendMessage(formData.newMessageBody);
+    };
 
     const onMessageChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        props.updateNewMessageBody(e.currentTarget.value)
-    }
+        props.updateNewMessageBody(e.currentTarget.value);
+    };
 
     return (
         <div className={s.dialogs}>
@@ -33,9 +58,9 @@ export const Dialogs: React.FC<DialogsPropsType> = (props) => {
             </div>
             <div className={s.messages}>
                 {messageElements}
-                <div><textarea onChange={onMessageChange} value={state.newMessageBody}/></div>
-                <div><button onClick={addMessage}>Add message</button></div>
+                <AddMessageReduxForm onSubmit={addMessage}/>
             </div>
         </div>
-    )
-}
+    );
+};
+
