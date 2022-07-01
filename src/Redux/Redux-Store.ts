@@ -1,24 +1,22 @@
-import {applyMiddleware, combineReducers, createStore, Store} from 'redux';
-import profileReducer, {AddPost, setUserProfile, setStatus, UpdateNewPostText} from './Profile-reducer';
-import dialogsReducer, {SendMessageAC, UpdateNewMessageAC} from './Dialogs-reducer';
+import {applyMiddleware, combineReducers, createStore} from 'redux';
+import profileReducer, {AddPost, setStatus, setUserProfile} from './Profile-reducer';
+import dialogsReducer, {SendMessageAC} from './Dialogs-reducer';
 import usersReducer, {
     followSuccess,
     setCurrentPage,
-    toggleIsFetching,
     setTotalUsersCount,
     setUsers,
-    unfollowSuccess, toggleFollowingProgress,
+    toggleFollowingProgress,
+    toggleIsFetching,
+    unfollowSuccess,
 } from './Users-reducer';
 import authReducer, {setUserData} from './Auth-reducer';
 import thunkMiddleware from 'redux-thunk';
 import {reducer as formReducer} from 'redux-form';
 
-export type ActionTypes =
-    ReturnType<typeof AddPost>
-    | ReturnType<typeof UpdateNewPostText>
+export type ActionTypes = ReturnType<typeof AddPost>
     | ReturnType<typeof setUserProfile>
     | ReturnType<typeof SendMessageAC>
-    | ReturnType<typeof UpdateNewMessageAC>
     | ReturnType<typeof followSuccess>
     | ReturnType<typeof unfollowSuccess>
     | ReturnType<typeof setUsers>
@@ -28,8 +26,6 @@ export type ActionTypes =
     | ReturnType<typeof setUserData>
     | ReturnType<typeof toggleFollowingProgress>
     | ReturnType<typeof setStatus>
-
-export type ReduxStoreType = Store<ReduxStateType, ActionTypes>
 
 export type ReduxStateType = ReturnType<typeof rootReducer>
 
@@ -41,14 +37,9 @@ let rootReducer = combineReducers({
     form: formReducer,
 });
 
-let store: ReduxStoreType = createStore(rootReducer, applyMiddleware(thunkMiddleware));
+let store = createStore(rootReducer, applyMiddleware(thunkMiddleware));
 
-declare global {
-    interface Window {
-        store: ReduxStoreType;
-    }
-}
-
+// @ts-ignore
 window.store = store;
 
 export default store;
