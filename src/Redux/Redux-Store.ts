@@ -11,8 +11,9 @@ import usersReducer, {
     unfollowSuccess,
 } from './Users-reducer';
 import authReducer, {setUserData} from './Auth-reducer';
-import thunkMiddleware from 'redux-thunk';
 import {reducer as formReducer} from 'redux-form';
+import appReducer, {initializedSuccess} from './App-reducer';
+import thunk, {ThunkAction} from 'redux-thunk';
 
 export type ActionTypes = ReturnType<typeof AddPost>
     | ReturnType<typeof setUserProfile>
@@ -26,8 +27,10 @@ export type ActionTypes = ReturnType<typeof AddPost>
     | ReturnType<typeof setUserData>
     | ReturnType<typeof toggleFollowingProgress>
     | ReturnType<typeof setStatus>
+    | ReturnType<typeof initializedSuccess>
 
 export type ReduxStateType = ReturnType<typeof rootReducer>
+export type AppThunk<ReturnType = void> = ThunkAction<ReturnType, ReduxStateType, unknown, ActionTypes>
 
 let rootReducer = combineReducers({
     profilePage: profileReducer,
@@ -35,9 +38,10 @@ let rootReducer = combineReducers({
     usersPage: usersReducer,
     auth: authReducer,
     form: formReducer,
+    app: appReducer,
 });
 
-let store = createStore(rootReducer, applyMiddleware(thunkMiddleware));
+let store = createStore(rootReducer, applyMiddleware(thunk));
 
 // @ts-ignore
 window.store = store;

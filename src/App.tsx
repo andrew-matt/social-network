@@ -11,20 +11,27 @@ import ProfileContainer from './components/Profile/ProfileContainer';
 import HeaderContainer from './components/Header/HeaderContainer';
 import Login from './components/Login/Login';
 import {connect} from 'react-redux';
-import {getUserData} from './Redux/Auth-reducer';
 import {ReduxStateType} from './Redux/Redux-Store';
+import {initializeApp} from './Redux/App-reducer';
+import Preloader from './components/common/Preloader/Preloader';
 
 type AppContainerPropsType = {
-    getUserData: () => void
+    initialized: boolean
+    initializeApp: () => void
 }
 
 class App extends React.Component<AppContainerPropsType> {
 
     componentDidMount() {
-        this.props.getUserData()
+        this.props.initializeApp()
     }
 
     render() {
+
+        if (!this.props.initialized) {
+            return <Preloader/>
+        }
+
         return (
             <BrowserRouter>
                 <div className="app-wrapper">
@@ -49,11 +56,13 @@ class App extends React.Component<AppContainerPropsType> {
 }
 
 type MapStateToPropsType = {
+    initialized: boolean
 }
 
 const mapStateToProps = (state: ReduxStateType): MapStateToPropsType => {
     return {
+        initialized: state.app.initialized
     }
 }
 
-export default connect(mapStateToProps, {getUserData})(App);
+export default connect(mapStateToProps, {initializeApp})(App);
