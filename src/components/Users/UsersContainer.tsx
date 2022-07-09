@@ -23,19 +23,19 @@ type UsersContainerPropsType = {
 class UsersContainer extends React.Component<UsersContainerPropsType> {
 
     componentDidMount() {
-        this.props.getUsers(this.props.currentPage, this.props.pageSize)
+        this.props.getUsers(this.props.currentPage, this.props.pageSize);
     }
 
     onPageChanged = (pageNumber: number) => {
-        this.props.setCurrentPage(pageNumber)
-        this.props.getUsers(pageNumber, this.props.pageSize)
+        this.props.setCurrentPage(pageNumber);
+        this.props.getUsers(pageNumber, this.props.pageSize);
         // this.props.setCurrentPage(pageNumber);
         // this.props.toggleIsFetching(true);
         // usersAPI.getUsers(pageNumber, this.props.pageSize).then(data => {
         //     this.props.toggleIsFetching(false);
         //     this.props.setUsers(data.items);
         // });
-    }
+    };
 
     render() {
         return (
@@ -52,7 +52,7 @@ class UsersContainer extends React.Component<UsersContainerPropsType> {
                     followingInProgress={this.props.followingInProgress}
                 />
             </>
-        )
+        );
     }
 }
 
@@ -82,8 +82,8 @@ const mapStateToProps = (state: ReduxStateType): MapStateToPropsType => {
         currentPage: state.usersPage.currentPage,
         isFetching: state.usersPage.isFetching,
         followingInProgress: state.usersPage.followingInProgress,
-    }
-}
+    };
+};
 
 // const mapDispatchToProps = (dispatch: Dispatch): MapDispatchToPropsType => {
 //     return {
@@ -115,5 +115,4 @@ export default compose<React.ComponentType>(
         setCurrentPage,
         getUsers,
     }),
-    withAuthRedirect
-)(UsersContainer)
+)(UsersContainer);

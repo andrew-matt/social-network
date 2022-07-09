@@ -18,7 +18,7 @@ type ProfileContainerPropsType = {
     }
     isAuth: boolean
     status: string
-    authorizedUserId: number
+    authorizedUserId: number | null
 }
 
 class ProfileContainer extends React.Component<ProfileContainerPropsType> {
@@ -28,7 +28,7 @@ class ProfileContainer extends React.Component<ProfileContainerPropsType> {
         let userId: number = this.props.router.params.userId;
 
         if (!userId) {
-            userId = this.props.authorizedUserId
+            userId = this.props.authorizedUserId !== null ? this.props.authorizedUserId : 23651;
         }
 
         this.props.getUserProfile(userId);
