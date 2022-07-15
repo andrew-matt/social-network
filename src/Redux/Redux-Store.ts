@@ -2,6 +2,7 @@ import {applyMiddleware, combineReducers, createStore} from 'redux';
 import profileReducer, {AddPost, setStatus, setUserProfile} from './Profile-reducer';
 import dialogsReducer, {SendMessageAC} from './Dialogs-reducer';
 import usersReducer, {
+    fake,
     followSuccess,
     setCurrentPage,
     setTotalUsersCount,
@@ -28,6 +29,7 @@ export type ActionTypes = ReturnType<typeof AddPost>
     | ReturnType<typeof toggleFollowingProgress>
     | ReturnType<typeof setStatus>
     | ReturnType<typeof initializedSuccess>
+    | ReturnType<typeof fake>
 
 export type ReduxStateType = ReturnType<typeof rootReducer>
 export type AppThunk<ReturnType = void> = ThunkAction<ReturnType, ReduxStateType, unknown, ActionTypes>
