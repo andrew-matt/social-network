@@ -16,11 +16,14 @@ import {reducer as formReducer} from 'redux-form';
 import appReducer, {initializedSuccess} from './App-reducer';
 import thunk, {ThunkAction} from 'redux-thunk';
 
+export type FollowSuccessType = ReturnType<typeof followSuccess>
+export type UnFollowSuccessType = ReturnType<typeof unfollowSuccess>
+
 export type ActionTypes = ReturnType<typeof AddPost>
     | ReturnType<typeof setUserProfile>
     | ReturnType<typeof SendMessageAC>
-    | ReturnType<typeof followSuccess>
-    | ReturnType<typeof unfollowSuccess>
+    | FollowSuccessType
+    | UnFollowSuccessType
     | ReturnType<typeof setUsers>
     | ReturnType<typeof setCurrentPage>
     | ReturnType<typeof setTotalUsersCount>

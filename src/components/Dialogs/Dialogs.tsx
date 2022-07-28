@@ -5,7 +5,7 @@ import {Message} from './Message/Message';
 import {DialogPageType} from '../../Redux/Dialogs-reducer';
 import {Field, InjectedFormProps, reduxForm} from 'redux-form';
 import {Textarea} from '../common/FormControls/FormControls';
-import {maxLength30, maxLengthCreator, required} from '../../utils/validators';
+import {maxLength30, maxLengthCreator, required} from '../../utils/validators/validators';
 
 
 export type DialogsPropsType = {

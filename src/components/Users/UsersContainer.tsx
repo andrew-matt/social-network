@@ -11,7 +11,7 @@ import {
     getIsFetching,
     getPageSize,
     getTotalUsersCount,
-    getUsers, getUsersSelector,
+    getUsers,
 } from '../../Redux/Users-selectors';
 
 type UsersContainerPropsType = {
@@ -45,7 +45,7 @@ class UsersContainer extends React.Component<UsersContainerPropsType> {
     };
 
     render() {
-        console.log('USERS');
+        // console.log('USERS');
         return (
             <>
                 {this.props.isFetching ? <Preloader/> : null}
@@ -94,7 +94,7 @@ type MapStateToPropsType = {
 // };
 
 const mapStateToProps = (state: ReduxStateType): MapStateToPropsType => {
-    console.log('mapStateToProps USERS');
+    // console.log('mapStateToProps USERS');
     return {
         users: getUsers(state),
         pageSize: getPageSize(state),
