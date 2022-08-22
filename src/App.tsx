@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import Navbar from './components/Navbar/Navbar';
-import {Route, Routes} from 'react-router-dom';
+import {Navigate, Route, Routes} from 'react-router-dom';
 import {News} from './components/News/News';
 import {Music} from './components/Music/Music';
 import {Settings} from './components/Settings/Settings';
@@ -38,6 +38,7 @@ class App extends React.Component<AppContainerPropsType> {
                 <Navbar/>
                 <div className="app-wrapper-content">
                     <Routes>
+                        <Route path="/" element={<Navigate to="/Login"/>}/>
                         <Route path="/profile/*" element={<ProfileContainer/>}/>
                         <Route path="/profile/:userId" element={<ProfileContainer/>}/>
                         <Route path="/dialogs" element={<DialogsContainer/>}/>
