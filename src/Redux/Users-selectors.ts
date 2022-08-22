@@ -28,9 +28,3 @@ export const getIsFetching = (state: ReduxStateType) => {
 export const getFollowingInProgress = (state: ReduxStateType) => {
     return state.usersPage.followingInProgress;
 };
-
-export const countSomethingDifficult = (state: ReduxStateType) => {
-    // for ... math ... big arrays
-    let count = 23;
-    return count;
-};

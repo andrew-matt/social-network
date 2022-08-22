@@ -1,6 +1,6 @@
 import React from 'react';
-import {Field, InjectedFormProps, reduxForm} from 'redux-form';
-import {Input} from '../common/FormControls/FormControls';
+import {InjectedFormProps, reduxForm} from 'redux-form';
+import {createField, Input} from '../common/FormControls/FormControls';
 import {maxLength30, required} from '../../utils/validators/validators';
 import {login} from '../../Redux/Auth-reducer';
 import {connect} from 'react-redux';
@@ -14,33 +14,16 @@ type FormDataType = {
     rememberMe: boolean
 }
 
-export const LoginForm: React.FC<InjectedFormProps<FormDataType>> = (props) => {
+export const LoginForm: React.FC<InjectedFormProps<FormDataType>> = ({handleSubmit, error}) => {
     return (
-        <form onSubmit={props.handleSubmit}>
-            <div>
-                <Field
-                    placeholder={'Email'}
-                    name={'email'}
-                    component={Input}
-                    validate={[required, maxLength30]}
-                />
-            </div>
-            <div>
-                <Field
-                    placeholder={'Password'}
-                    name={'password'}
-                    type={'password'}
-                    component={Input}
-                    validate={[required, maxLength30]}
-                />
-            </div>
-            <div>
-                <Field type={'checkbox'} name={'rememberMe'} component={'input'}/> remember me
-            </div>
+        <form onSubmit={handleSubmit}>
+            {createField('Email', 'email', [required, maxLength30], Input)}
+            {createField('Password', 'password', [required, maxLength30], Input, {type: 'password'})}
+            {createField(null, 'rememberMe', [], Input, {type: 'checkbox'}, "remember me")}
             {
-                props.error &&
+                error &&
                 <div className={styles.formSummaryError}>
-                    {props.error}
+                    {error}
                 </div>
             }
             <button>Login</button>

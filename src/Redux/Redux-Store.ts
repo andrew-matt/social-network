@@ -1,4 +1,4 @@
-import {applyMiddleware, combineReducers, createStore} from 'redux';
+import {applyMiddleware, combineReducers, compose, createStore} from 'redux';
 import profileReducer, {AddPost, setStatus, setUserProfile} from './Profile-reducer';
 import dialogsReducer, {SendMessageAC} from './Dialogs-reducer';
 import usersReducer, {
@@ -45,8 +45,9 @@ let rootReducer = combineReducers({
     form: formReducer,
     app: appReducer,
 });
-
-let store = createStore(rootReducer, applyMiddleware(thunk));
+// @ts-ignore
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const store = createStore(rootReducer, composeEnhancers(applyMiddleware(thunk)));
 
 // @ts-ignore
 window.store = store;
