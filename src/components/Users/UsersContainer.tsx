@@ -13,6 +13,7 @@ import {
     getTotalUsersCount,
     getUsers,
 } from '../../Redux/Users-selectors';
+import {withAuthRedirect} from '../../hoc/withAuthRedirect';
 
 type UsersContainerPropsType = {
     users: UsersType[]
@@ -133,4 +134,5 @@ export default compose<React.ComponentType>(
         setCurrentPage,
         getUsers: requestUsers,
     }),
+    withAuthRedirect
 )(UsersContainer);
