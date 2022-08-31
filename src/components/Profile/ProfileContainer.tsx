@@ -24,8 +24,7 @@ type ProfileContainerPropsType = {
 
 class ProfileContainer extends React.Component<ProfileContainerPropsType> {
 
-    componentDidMount() {
-
+    refreshProfile() {
         let userId: number = this.props.router.params.userId;
 
         if (!userId) {
@@ -34,6 +33,16 @@ class ProfileContainer extends React.Component<ProfileContainerPropsType> {
 
         this.props.getUserProfile(userId);
         this.props.getStatus(userId);
+    }
+
+    componentDidMount() {
+        this.refreshProfile();
+    }
+
+    componentDidUpdate(prevProps: Readonly<ProfileContainerPropsType>, prevState: Readonly<{}>, snapshot?: any) {
+        if (this.props.router.params.userId !== prevProps.router.params.userId) {
+            this.refreshProfile();
+        }
     }
 
     render() {
@@ -56,7 +65,7 @@ const mapStateToProps = (state: ReduxStateType): MapStateToPropsType => {
         profile: state.profilePage.profile,
         status: state.profilePage.status,
         authorizedUserId: state.auth.userId,
-        isAuth: state.auth.isAuth
+        isAuth: state.auth.isAuth,
     };
 };
 
@@ -79,5 +88,5 @@ function withRouter<T>(Component: ComponentType<T>) {
 export default compose<React.ComponentType>(
     connect(mapStateToProps, {getUserProfile, getStatus, updateStatus}),
     withRouter,
-    withAuthRedirect
+    withAuthRedirect,
 )(ProfileContainer);

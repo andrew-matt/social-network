@@ -40,6 +40,7 @@ const Users: React.FC<UsersPropsType> = (props) => {
                                  className={pageNumberClass}>{p}</span>
                 })}
             </div>
+            {/*<div><input onChange={(e) => {props.onPageChanged(+e.currentTarget.value)}}/></div>*/}
             {
                 props.users.map(u => {
                     return (

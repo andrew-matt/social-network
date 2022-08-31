@@ -1,8 +1,9 @@
 import React from 'react';
-import s from './ProfileInfo.module.css';
+import style from './ProfileInfo.module.css';
 import Preloader from '../../common/Preloader/Preloader';
 import {UserProfileType} from '../../../Redux/Profile-reducer';
 import ProfileStatusWithHooks from './ProfileStatusWithHooks';
+import userPhoto from "../../../assets/images/user.jpg";
 
 type ProfileInfoPropsType = {
     profile: UserProfileType
@@ -20,13 +21,9 @@ const ProfileInfo: React.FC<ProfileInfoPropsType> = (props) => {
 
     return (
         <div>
-            {/*<div>*/}
-            {/*    <img src="https://wallpaperaccess.com/full/846666.jpg" width="900px" alt={'some pic'}/>*/}
-            {/*</div>*/}
-            <div className={s.descriptionBlock}>
-                <img src={props.profile.photos.large} alt={'user'}/>
+            <div className={style.descriptionBlock}>
+                <img src={props.profile.photos.large || userPhoto} className={style.mainPhoto} alt={'user'}/>
                 <ProfileStatusWithHooks status={props.status} updateStatus={props.updateStatus}/>
-                {/*<ProfileStatus status={props.status} updateStatus={props.updateStatus}/>*/}
             </div>
         </div>
     );
