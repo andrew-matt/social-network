@@ -1,5 +1,4 @@
 import {applyMiddleware, combineReducers, compose, createStore} from 'redux';
-import profileReducer, {AddPost, setStatus, setUserProfile} from './Profile-reducer';
 import dialogsReducer, {SendMessageAC} from './Dialogs-reducer';
 import usersReducer, {
     fake,
@@ -15,12 +14,12 @@ import authReducer, {setUserData} from './Auth-reducer';
 import {reducer as formReducer} from 'redux-form';
 import appReducer, {initializedSuccess} from './App-reducer';
 import thunk, {ThunkAction} from 'redux-thunk';
+import {profileReducer, ProfileReducerActionTypes} from './Profile-reducer';
 
 export type FollowSuccessType = ReturnType<typeof followSuccess>
 export type UnFollowSuccessType = ReturnType<typeof unfollowSuccess>
 
-export type ActionTypes = ReturnType<typeof AddPost>
-    | ReturnType<typeof setUserProfile>
+export type ActionTypes = ProfileReducerActionTypes
     | ReturnType<typeof SendMessageAC>
     | FollowSuccessType
     | UnFollowSuccessType
@@ -30,7 +29,6 @@ export type ActionTypes = ReturnType<typeof AddPost>
     | ReturnType<typeof toggleIsFetching>
     | ReturnType<typeof setUserData>
     | ReturnType<typeof toggleFollowingProgress>
-    | ReturnType<typeof setStatus>
     | ReturnType<typeof initializedSuccess>
     | ReturnType<typeof fake>
 

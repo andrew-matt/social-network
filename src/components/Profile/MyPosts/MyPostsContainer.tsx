@@ -1,4 +1,4 @@
-import {AddPost, PostType} from '../../../Redux/Profile-reducer';
+import {addPost, PostType} from '../../../Redux/Profile-reducer';
 import MyPosts from './MyPosts';
 import {ReduxStateType} from '../../../Redux/Redux-Store';
 import {connect} from 'react-redux';
@@ -21,7 +21,7 @@ const mapStateToProps = (state: ReduxStateType): MapStateToPropsType => {
 const mapDispatchToProps = (dispatch: Dispatch): MapDispatchToPropsType => {
     return {
         addPost: (newPostText: string) => {
-            dispatch(AddPost(newPostText))
+            dispatch(addPost(newPostText))
         }
     }
 }

@@ -1,7 +1,7 @@
 import React, {ComponentType} from 'react';
 import {Profile} from './Profile';
 import {connect} from 'react-redux';
-import {getUserProfile, getStatus, UserProfileType, updateStatus} from '../../Redux/Profile-reducer';
+import {getUserProfile, getStatus, UserProfileType, updateStatus, savePhoto} from '../../Redux/Profile-reducer';
 import {ReduxStateType} from '../../Redux/Redux-Store';
 import {useLocation, useNavigate, useParams} from 'react-router-dom';
 import {compose} from 'redux';
@@ -11,6 +11,7 @@ type ProfileContainerPropsType = {
     getUserProfile: (userId: number) => void
     getStatus: (userId: number) => void
     updateStatus: (status: string) => void
+    savePhoto: (photo: File) => void
     profile: UserProfileType
     router: {
         params: {
@@ -47,8 +48,13 @@ class ProfileContainer extends React.Component<ProfileContainerPropsType> {
 
     render() {
         return (
-            <Profile profile={this.props.profile} status={this.props.status || '-----'}
-                     updateStatus={this.props.updateStatus}/>
+            <Profile
+                isOwner={!this.props.router.params.userId}
+                profile={this.props.profile}
+                status={this.props.status || '-----'}
+                updateStatus={this.props.updateStatus}
+                savePhoto={this.props.savePhoto}
+            />
         );
     }
 }
@@ -86,7 +92,7 @@ function withRouter<T>(Component: ComponentType<T>) {
 }
 
 export default compose<React.ComponentType>(
-    connect(mapStateToProps, {getUserProfile, getStatus, updateStatus}),
+    connect(mapStateToProps, {getUserProfile, getStatus, updateStatus, savePhoto}),
     withRouter,
     withAuthRedirect,
 )(ProfileContainer);
