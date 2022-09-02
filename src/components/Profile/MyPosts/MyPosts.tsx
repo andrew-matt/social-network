@@ -3,7 +3,7 @@ import s from './MyPosts.module.css';
 import {Post} from './Post/Post';
 import {PostType} from '../../../Redux/Profile-reducer';
 import {Field, InjectedFormProps, reduxForm} from 'redux-form';
-import {maxLength30, maxLengthCreator, required} from '../../../utils/validators/validators';
+import {maxLength30, required} from '../../../utils/validators/validators';
 import {Textarea} from '../../common/FormControls/FormControls';
 
 export type MyPostsPropsType = {
@@ -42,7 +42,7 @@ const MyPosts: React.FC<MyPostsPropsType> = (props) => {
         props.addPost(formData.newPostText);
     };
 
-    let postElements = props.posts.map(p => <Post key={p.id} message={p.message} likesCount={p.likesCount}/>);
+    let postElements = props.posts.map(post => <Post key={post.id} message={post.message} likesCount={post.likesCount}/>);
 
     return (
         <div className={s.postsBlock}>

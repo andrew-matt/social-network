@@ -1,4 +1,4 @@
-import React, {ChangeEvent} from 'react';
+import React, {ChangeEvent, FC} from 'react';
 import style from './ProfileInfo.module.css';
 import Preloader from '../../common/Preloader/Preloader';
 import {UserProfileType} from '../../../Redux/Profile-reducer';
@@ -13,9 +13,9 @@ type ProfileInfoPropsType = {
     savePhoto: (photo: File) => void
 }
 
-const ProfileInfo: React.FC<ProfileInfoPropsType> = (props) => {
+const ProfileInfo: React.FC<ProfileInfoPropsType> = ({isOwner, profile, status, updateStatus, savePhoto}) => {
 
-    if (!props.profile) {
+    if (!profile) {
         return (
             <Preloader/>
         );
@@ -23,17 +23,82 @@ const ProfileInfo: React.FC<ProfileInfoPropsType> = (props) => {
 
     const onMainPhotoSelected = (e: ChangeEvent<HTMLInputElement>) => {
         if (e.target.files && e.target.files.length) {
-            props.savePhoto(e.target.files[0]);
+            savePhoto(e.target.files[0]);
         }
     };
 
     return (
         <div>
             <div className={style.descriptionBlock}>
-                <img src={props.profile.photos.large || userPhoto} className={style.mainPhoto} alt={'user'}/>
-                {props.isOwner && <input type="file" accept=".png, .jpg, .jpeg" onChange={onMainPhotoSelected}/>}
-                <ProfileStatusWithHooks status={props.status} updateStatus={props.updateStatus}/>
+                <img
+                    src={profile.photos.large || userPhoto}
+                    className={style.mainPhoto}
+                    alt={'user'}
+                />
+                {
+                    isOwner &&
+                    <input
+                        type="file"
+                        accept=".png, .jpg, .jpeg"
+                        onChange={onMainPhotoSelected}
+                    />
+                }
+                <ProfileData profile={profile}/>
+                <ProfileStatusWithHooks
+                    status={status}
+                    updateStatus={updateStatus}
+                />
             </div>
+        </div>
+    );
+};
+
+type ProfileDataType = {
+    profile: UserProfileType
+}
+
+const ProfileData: FC<ProfileDataType> = ({profile}) => {
+    return (
+        <div>
+            <div>
+                <b>Full name</b>: {profile.fullName}
+            </div>
+            <div>
+                <b>Looking for a job</b>: {profile.lookingForAJob ? 'yes' : 'no'}
+            </div>
+            {
+                profile.lookingForAJob &&
+                <div>
+                    <b>My professional skills</b>: {profile.lookingForAJobDescription}
+                </div>
+            }
+            <div>
+                <b>About me</b>: {profile.aboutMe}
+            </div>
+            <div>
+                <b>Contacts</b>: {Object.keys(profile.contacts ? profile.contacts : []).map(key => {
+                return (
+                    <Contact
+                        key={key}
+                        contactTitle={key}
+                        contactValue={profile.contacts && profile.contacts[key as keyof typeof profile.contacts]}
+                    />
+                );
+            })}
+            </div>
+        </div>
+    );
+};
+
+type ContactType = {
+    contactTitle: string
+    contactValue: string | undefined
+}
+
+const Contact: FC<ContactType> = ({contactTitle, contactValue}) => {
+    return (
+        <div className={style.contact}>
+            <b>{contactTitle}</b>: {contactValue}
         </div>
     );
 };

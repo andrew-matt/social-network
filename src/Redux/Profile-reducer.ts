@@ -4,8 +4,8 @@ import {profileAPI, usersAPI} from '../api/api';
 
 const initialState: ProfilePageType = {
     posts: [
-        {id: 1, message: 'Hi, how are you?', likesCount: 15},
-        {id: 2, message: 'It\'s my first post!', likesCount: 20},
+        {id: 1, message: `These Aren't The Droids You're Looking For`, likesCount: 15},
+        {id: 2, message: `May the Force be with you`, likesCount: 20},
     ] as PostType[],
     profile: null,
     status: '',
