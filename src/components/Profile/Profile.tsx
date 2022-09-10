@@ -9,6 +9,7 @@ type ProfilePropsType = {
     status: string
     updateStatus: (status: string) => void
     savePhoto: (photo: File) => void
+    saveProfile: (formData: UserProfileType) => Promise<undefined>
 }
 
 export const Profile: React.FC<ProfilePropsType> = (props) => {
@@ -20,6 +21,7 @@ export const Profile: React.FC<ProfilePropsType> = (props) => {
                 status={props.status}
                 updateStatus={props.updateStatus}
                 savePhoto={props.savePhoto}
+                saveProfile={props.saveProfile}
             />
             <MyPostsContainer/>
         </div>

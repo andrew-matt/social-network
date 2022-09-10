@@ -1,6 +1,7 @@
-import {ActionTypes} from './Redux-Store';
+import {ActionTypes, AppThunk} from './Redux-Store';
 import {Dispatch} from 'redux';
 import {profileAPI, usersAPI} from '../api/api';
+import {stopSubmit} from 'redux-form';
 
 const initialState: ProfilePageType = {
     posts: [
@@ -65,8 +66,22 @@ export const savePhoto = (photo: File) => async (dispatch: Dispatch) => {
     }
 };
 
-// types
+export const saveProfile = (formData: UserProfileType): AppThunk => async (dispatch, getState) => {
+    const userId = getState().auth.userId;
+    const contacts = getState().profilePage.profile?.contacts;
+    const response = await profileAPI.saveProfile(formData);
+    if (response.data.resultCode === 0) {
+        await dispatch(getUserProfile(userId as number));
+    } else {
+        if (contacts) {
+            const key = Object.keys(contacts).map(key => response.data.messages[0].toLowerCase().includes(key) ? key : '').join('');
+            dispatch(stopSubmit('edit-profile', {'contacts': {[key]: response.data.messages[0]}}));
+            return Promise.reject(response.data.messages[0]);
+        }
+    }
+};
 
+// types
 type AddPostType = ReturnType<typeof addPost>
 type setUserProfileType = ReturnType<typeof setUserProfile>
 type setStatusType = ReturnType<typeof setStatus>
@@ -105,9 +120,10 @@ export type UserProfileType = {
         youtube: string
         mainLink: string
     }
-    photos: {
+    photos?: {
         small: string
         large: string
     }
 }
+
 

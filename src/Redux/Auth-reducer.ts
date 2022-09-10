@@ -47,7 +47,7 @@ export const getUserData = () => async (dispatch: Dispatch) => {
 export const login = (email: string, password: string, rememberMe: boolean): AppThunk => async dispatch => {
     const response = await authAPI.login(email, password, rememberMe);
     if (response.data.resultCode === 0) {
-        dispatch(getUserData());
+        await dispatch(getUserData());
     } else {
         const message = response.data.messages.length > 0 ? response.data.messages[0] : 'Some error';
         dispatch(stopSubmit('login', {_error: message}));

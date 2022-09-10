@@ -19,7 +19,7 @@ export const LoginForm: React.FC<InjectedFormProps<FormDataType>> = ({handleSubm
         <form onSubmit={handleSubmit}>
             {createField('Email', 'email', [required, maxLength30], Input)}
             {createField('Password', 'password', [required, maxLength30], Input, {type: 'password'})}
-            {createField(null, 'rememberMe', [], Input, {type: 'checkbox'}, "remember me")}
+            {createField(null, 'rememberMe', [], Input, {type: 'checkbox'}, 'remember me')}
             {
                 error &&
                 <div className={styles.formSummaryError}>
@@ -52,7 +52,7 @@ const Login = (props: LoginPropsType) => {
             <h1>
                 LOGIN
             </h1>
-            <LoginReduxForm onSubmit={onSubmit}/>
+            <LoginReduxForm initialValues={{email: process.env.REACT_APP_LOGIN, password: process.env.REACT_APP_PASSWORD}} onSubmit={onSubmit}/>
         </div>
     );
 };
