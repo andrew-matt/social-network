@@ -1,4 +1,4 @@
-import {ActionTypes, AppThunk} from './Redux-Store';
+import {AppActionsType, AppThunk} from './Store';
 import {Dispatch} from 'redux';
 import {profileAPI, usersAPI} from '../api/api';
 import {stopSubmit} from 'redux-form';
@@ -12,7 +12,7 @@ const initialState: ProfilePageType = {
     status: '',
 };
 
-export const profileReducer = (state = initialState, action: ActionTypes): ProfilePageType => {
+export const profileReducer = (state = initialState, action: AppActionsType): ProfilePageType => {
     switch (action.type) {
         case 'profile/ADD-POST':
             let newPost: PostType = {

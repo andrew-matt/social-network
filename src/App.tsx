@@ -11,7 +11,7 @@ import ProfileContainer from './components/Profile/ProfileContainer';
 import HeaderContainer from './components/Header/HeaderContainer';
 import Login from './components/Login/Login';
 import {connect} from 'react-redux';
-import {ReduxStateType} from './Redux/Redux-Store';
+import {AppRootStateType} from './Redux/Store';
 import {initializeApp} from './Redux/App-reducer';
 import Preloader from './components/common/Preloader/Preloader';
 
@@ -58,7 +58,7 @@ type MapStateToPropsType = {
     initialized: boolean
 }
 
-const mapStateToProps = (state: ReduxStateType): MapStateToPropsType => {
+const mapStateToProps = (state: AppRootStateType): MapStateToPropsType => {
     return {
         initialized: state.app.initialized,
     };

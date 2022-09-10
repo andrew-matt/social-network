@@ -1,5 +1,5 @@
 import {connect} from 'react-redux';
-import {ReduxStateType} from '../../Redux/Redux-Store';
+import {AppRootStateType} from '../../Redux/Store';
 import {follow, requestUsers, setCurrentPage, unfollow, UsersType} from '../../Redux/Users-reducer';
 import React from 'react';
 import Users from './Users';
@@ -82,7 +82,7 @@ type MapStateToPropsType = {
 //     setIsFetching: (isFetching: boolean) => void
 // }
 
-// const mapStateToProps = (state: ReduxStateType): MapStateToPropsType => {
+// const mapStateToProps = (state: AppRootStateType): MapStateToPropsType => {
 //     return {
 //         users: state.usersPage.users,
 //         pageSize: state.usersPage.pageSize,
@@ -93,7 +93,7 @@ type MapStateToPropsType = {
 //     };
 // };
 
-const mapStateToProps = (state: ReduxStateType): MapStateToPropsType => {
+const mapStateToProps = (state: AppRootStateType): MapStateToPropsType => {
     return {
         users: getUsers(state),
         pageSize: getPageSize(state),

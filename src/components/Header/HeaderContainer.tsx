@@ -1,7 +1,7 @@
 import React from 'react';
 import Header from './Header';
 import {connect} from 'react-redux';
-import {ReduxStateType} from '../../Redux/Redux-Store';
+import {AppRootStateType} from '../../Redux/Store';
 import {logout} from '../../Redux/Auth-reducer';
 
 type HeaderContainerPropsType = {
@@ -26,7 +26,7 @@ type MapStateToPropsType = {
     login: string | null
 }
 
-const mapStateToProps = (state: ReduxStateType): MapStateToPropsType => {
+const mapStateToProps = (state: AppRootStateType): MapStateToPropsType => {
     return {
         isAuth: state.auth.isAuth,
         login: state.auth.login

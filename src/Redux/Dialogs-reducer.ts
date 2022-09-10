@@ -1,4 +1,4 @@
-import {ActionTypes} from './Redux-Store';
+import {AppActionsType} from './Store';
 
 export type DialogType = {
     id: number
@@ -29,7 +29,7 @@ let initialState = {
     ] as MessageType[],
 };
 
-const dialogsReducer = (state: DialogPageType = initialState, action: ActionTypes): DialogPageType => {
+const dialogsReducer = (state: DialogPageType = initialState, action: AppActionsType): DialogPageType => {
     switch (action.type) {
         case SEND_MESSAGE:
             return {

@@ -1,4 +1,4 @@
-import {ActionTypes, FollowSuccessType, UnFollowSuccessType} from './Redux-Store';
+import {AppActionsType, FollowSuccessType, UnFollowSuccessType} from './Store';
 import {usersAPI} from '../api/api';
 import {Dispatch} from 'redux';
 import {AxiosResponse} from 'axios';
@@ -39,7 +39,7 @@ const initialState = {
     fake: 10,
 };
 
-const usersReducer = (state: UsersPageType = initialState, action: ActionTypes): UsersPageType => {
+const usersReducer = (state: UsersPageType = initialState, action: AppActionsType): UsersPageType => {
     switch (action.type) {
         case FAKE:
             return {...state, fake: state.fake + 1};

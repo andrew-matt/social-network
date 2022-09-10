@@ -9,7 +9,7 @@ import {
     savePhoto,
     saveProfile,
 } from '../../Redux/Profile-reducer';
-import {ReduxStateType} from '../../Redux/Redux-Store';
+import {AppRootStateType} from '../../Redux/Store';
 import {useLocation, useNavigate, useParams} from 'react-router-dom';
 import {compose} from 'redux';
 import {withAuthRedirect} from '../../hoc/withAuthRedirect';
@@ -75,7 +75,7 @@ type MapStateToPropsType = {
     isAuth: boolean
 }
 
-const mapStateToProps = (state: ReduxStateType): MapStateToPropsType => {
+const mapStateToProps = (state: AppRootStateType): MapStateToPropsType => {
     return {
         profile: state.profilePage.profile,
         status: state.profilePage.status,

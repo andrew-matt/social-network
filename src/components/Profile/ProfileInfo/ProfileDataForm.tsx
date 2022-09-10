@@ -4,10 +4,6 @@ import {createField, Input, Textarea} from '../../common/FormControls/FormContro
 import {InjectedFormProps, reduxForm} from 'redux-form';
 import styles from '../../common/FormControls/FormsControls.module.css';
 
-export type ProfileDataFormType = {
-    profile: UserProfileType
-}
-
 const ProfileDataForm: FC<ProfileDataFormType & InjectedFormProps<{}, ProfileDataFormType>> = ({
                                                                                                    handleSubmit,
                                                                                                    profile,
@@ -49,5 +45,10 @@ const ProfileDataForm: FC<ProfileDataFormType & InjectedFormProps<{}, ProfileDat
         </form>
     );
 };
+
+//types
+export type ProfileDataFormType = {
+    profile: UserProfileType
+}
 
 export const ProfileDataReduxForm = reduxForm<{}, ProfileDataFormType>({form: 'edit-profile'})(ProfileDataForm);

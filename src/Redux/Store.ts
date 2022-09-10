@@ -1,88 +1,56 @@
-import React from "react";
+import {applyMiddleware, combineReducers, compose, createStore} from 'redux';
+import dialogsReducer, {SendMessageAC} from './Dialogs-reducer';
+import usersReducer, {
+    fake,
+    followSuccess,
+    setCurrentPage,
+    setTotalUsersCount,
+    setUsers,
+    toggleFollowingProgress,
+    toggleIsFetching,
+    unfollowSuccess,
+} from './Users-reducer';
+import {authReducer, AuthReducerActionTypes} from './Auth-reducer';
+import {reducer as formReducer} from 'redux-form';
+import appReducer, {initializedSuccess} from './App-reducer';
+import thunk, {ThunkAction} from 'redux-thunk';
+import {profileReducer, ProfileReducerActionTypes} from './Profile-reducer';
 
-// import profileReducer, {AddPostActionCreator, UpdateNewPostTextActionCreator} from "./Profile-reducer";
-// import dialogsReducer, {SendMessageAC, UpdateNewMessageAC} from "./Dialogs-reducer";
-//
-// type PostType = {
-//     id: number
-//     message: string
-//     likesCount: number
-// }
-// type DialogType = {
-//     id: number
-//     name: string
-// }
-// type MessageType = {
-//     id: number
-//     message: string
-// }
-// type ProfilePageType = {
-//     posts: Array<PostType>
-//     newPostText: string
-// }
-// type DialogPageType = {
-//     dialogs: Array<DialogType>
-//     messages: Array<MessageType>
-//     newMessageBody: string
-// }
-// type RootStateType = {
-//     profilePage: ProfilePageType
-//     dialogsPage: DialogPageType
-// }
-// type ActionTypes =
-//     ReturnType<typeof AddPostActionCreator>
-//     | ReturnType<typeof UpdateNewPostTextActionCreator>
-//     | ReturnType<typeof SendMessageAC>
-//     | ReturnType<typeof UpdateNewMessageAC>
-// type StoreType = {
-//     _state: RootStateType
-//     getState: () => RootStateType
-//     _callSubscriber: (state: RootStateType) => void
-//     dispatch: (action: ActionTypes) => void
-//     subscribe: (observer: () => void) => void
-// }
-//
-// let store: StoreType = {
-//     _state: {
-//         profilePage: {
-//             posts: [
-//                 {id: 1, message: "Hi, how are you?", likesCount: 15},
-//                 {id: 2, message: "It's my first post!", likesCount: 20}
-//             ],
-//             newPostText: ''
-//         },
-//         dialogsPage: {
-//             dialogs: [
-//                 {id: 1, name: "Andrew"},
-//                 {id: 2, name: "Hannah"},
-//                 {id: 3, name: "William"},
-//                 {id: 4, name: "Jennifer"},
-//                 {id: 5, name: "Holly"}
-//             ],
-//             messages: [
-//                 {id: 1, message: "Hi"},
-//                 {id: 2, message: "How are you"},
-//                 {id: 3, message: "Hell yeah"}
-//             ],
-//             newMessageBody: ''
-//         }
-//     },
-//     getState() {
-//         return this._state
-//     },
-//     _callSubscriber() {
-//         console.log('State is changed')
-//     },
-//     subscribe(observer: (state: RootStateType) => void) {
-//         this._callSubscriber = observer
-//     },
-//     dispatch(action) {
-//
-//         this._state.profilePage = profileReducer(this._state.profilePage, action);
-//         this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action);
-//
-//         this._callSubscriber(this._state)
-//     }
-// }
-//
-// console.log(store)
+let rootReducer = combineReducers({
+    profilePage: profileReducer,
+    dialogsPage: dialogsReducer,
+    usersPage: usersReducer,
+    auth: authReducer,
+    form: formReducer,
+    app: appReducer,
+});
+// @ts-ignore
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const store = createStore(rootReducer, composeEnhancers(applyMiddleware(thunk)));
+
+// @ts-ignore
+window.store = store;
+
+export default store;
+
+//types
+export type AppRootStateType = ReturnType<typeof rootReducer>
+
+export type AppActionsType = AuthReducerActionTypes
+    | ProfileReducerActionTypes
+    | ReturnType<typeof SendMessageAC>
+    | FollowSuccessType
+    | UnFollowSuccessType
+    | ReturnType<typeof setUsers>
+    | ReturnType<typeof setCurrentPage>
+    | ReturnType<typeof setTotalUsersCount>
+    | ReturnType<typeof toggleIsFetching>
+    | ReturnType<typeof toggleFollowingProgress>
+    | ReturnType<typeof initializedSuccess>
+    | ReturnType<typeof fake>
+
+export type AppThunk<ReturnType = void> = ThunkAction<ReturnType, AppRootStateType, unknown, AppActionsType>
+
+export type FollowSuccessType = ReturnType<typeof followSuccess>
+
+export type UnFollowSuccessType = ReturnType<typeof unfollowSuccess>

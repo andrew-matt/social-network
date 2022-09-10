@@ -1,4 +1,4 @@
-import {ActionTypes, AppThunk} from './Redux-Store';
+import {AppActionsType, AppThunk} from './Store';
 import {getUserData} from './Auth-reducer';
 
 type InitialStateType = {
@@ -11,7 +11,7 @@ const initialState: InitialStateType = {
     initialized: false,
 };
 
-const appReducer = (state = initialState, action: ActionTypes): InitialStateType => {
+const appReducer = (state = initialState, action: AppActionsType): InitialStateType => {
     switch (action.type) {
         case INITIALIZED_SUCCESS:
             return {
