@@ -1,8 +1,8 @@
 import React, {FC} from 'react';
-import {UserProfileType} from '../../../Redux/Profile-reducer';
-import {createField, Input, Textarea} from '../../common/FormControls/FormControls';
+import {UserProfileType} from 'Redux/Profile-reducer';
+import {createField, Input, Textarea} from 'components/common/FormControls/FormControl';
 import {InjectedFormProps, reduxForm} from 'redux-form';
-import styles from '../../common/FormControls/FormsControls.module.css';
+import styles from 'components/common/FormControls/FormControl.module.css';
 
 const ProfileDataForm: FC<ProfileDataFormType & InjectedFormProps<{}, ProfileDataFormType>> = ({
                                                                                                    handleSubmit,

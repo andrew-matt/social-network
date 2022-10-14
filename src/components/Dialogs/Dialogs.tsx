@@ -2,11 +2,10 @@ import React from 'react';
 import s from './Dialogs.module.css';
 import {DialogItem} from './DialogItem/DialogItem';
 import {Message} from './Message/Message';
-import {DialogPageType} from '../../Redux/Dialogs-reducer';
+import {DialogPageType} from 'Redux/Dialogs-reducer';
 import {Field, InjectedFormProps, reduxForm} from 'redux-form';
-import {Textarea} from '../common/FormControls/FormControls';
-import {maxLength30, maxLengthCreator, required} from '../../utils/validators/validators';
-
+import {Textarea} from 'components/common/FormControls/FormControl';
+import {maxLength30, required} from 'utils/validators/validators';
 
 export type DialogsPropsType = {
     dialogsPage: DialogPageType

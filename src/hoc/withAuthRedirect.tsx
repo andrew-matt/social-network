@@ -1,6 +1,6 @@
 import {Navigate} from 'react-router-dom';
 import React, {ComponentType} from 'react';
-import {AppRootStateType} from '../Redux/Store';
+import {AppRootStateType} from 'Redux/Store';
 import {connect} from 'react-redux';
 
 type MapStateToPropsForRedirectType = {
@@ -14,7 +14,7 @@ const mapStateToPropsForRedirect = (state: AppRootStateType): MapStateToPropsFor
 };
 
 export function withAuthRedirect<T>(Component: ComponentType<T>) {
-    
+
     class RedirectComponent extends React.Component<MapStateToPropsForRedirectType> {
         render() {
             let {isAuth, ...restProps} = this.props;

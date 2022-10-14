@@ -1,0 +1,93 @@
+.formField {
+    min-width: 300px;
+    padding: 1rem 2rem;
+    outline: none;
+    border: 1px solid #e7edf2;
+    font-family: inherit;
+    font-size: 16px;
+    font-weight: 700;
+    color: gray;
+}
+
+.loginField {
+    border-radius: 12px 12px 0 0;
+}
+
+.passwordField {
+    border-radius: 0 0 12px 12px;
+}
+
+.captchaImageWrapper {
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+}
+
+.captchaField {
+    margin: 10px 0;
+    min-width: 200px;
+    border-radius: 12px;
+}
+
+.buttonContainer {
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+}
+
+.button {
+    font-family: inherit;
+    font-weight: 500;
+    font-size: 14px;
+    min-width: 200px;
+    background-size: 200%;
+    border-radius: 30px;
+    border: none;
+    min-height: 2.5rem;
+    cursor: pointer;
+    background-color: #8224e3;
+    background-image: linear-gradient(90deg, #8224e3 0, #a968ec 50%, #8224e3 100%);
+    box-shadow: 0 1px 2px 0 rgb(130 36 227 / 50%);
+    color: white;
+    transition: all 750ms ease;
+}
+
+.button:hover {
+    background-color: #9c51e9;
+    background-position: right center;
+    background-image: linear-gradient(90deg, #8224e3 0, #a968ec 50%, #8224e3 100%);
+}
+
+.fieldsErrorWrapper {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    margin-top: 10px;
+    min-height: 40px;
+}
+
+.fieldsError {
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    white-space: nowrap;
+    background-color: #be4b49;
+    border: 0;
+    border-radius: 2px;
+    box-shadow: 0 0 0 1px rgb(139 3 0 / 75%), 0 1px 10px rgb(0 0 0 / 35%);
+    color: white;
+    opacity: 0;
+}
+
+.fieldsErrorShow {
+    opacity: 1;
+}
+
+
+
+
+
+
+
+

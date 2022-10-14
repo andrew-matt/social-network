@@ -13,6 +13,7 @@ const Header = (props: HeaderPropsType) => {
         <header className={s.header}>
             <img
                 src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/Vanamo_Logo.svg/1200px-Vanamo_Logo.svg.png"
+                alt={'logo'}
             />
             <div className={s.loginBlock}>
                 {
@@ -22,7 +23,7 @@ const Header = (props: HeaderPropsType) => {
                                 {props.login} - <button onClick={props.logout}>Log out</button>
                             </div>
                         )
-                        : <NavLink to="/Login">Login</NavLink>
+                        : <NavLink to="/login">Login</NavLink>
                 }
             </div>
         </header>

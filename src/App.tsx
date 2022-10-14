@@ -1,44 +1,49 @@
-import React from 'react';
-import './App.css';
-import Navbar from './components/Navbar/Navbar';
-import {Navigate, Route, Routes} from 'react-router-dom';
-import {News} from './components/News/News';
-import {Music} from './components/Music/Music';
-import {Settings} from './components/Settings/Settings';
-import DialogsContainer from './components/Dialogs/DialogsContainer';
-import UsersContainer from './components/Users/UsersContainer';
-import ProfileContainer from './components/Profile/ProfileContainer';
-import HeaderContainer from './components/Header/HeaderContainer';
-import Login from './components/Login/Login';
-import {connect} from 'react-redux';
-import {AppRootStateType} from './Redux/Store';
-import {initializeApp} from './Redux/App-reducer';
-import Preloader from './components/common/Preloader/Preloader';
+import React from 'react'
+import Navbar from './components/Navbar/Navbar'
+import {Navigate, Route, Routes} from 'react-router-dom'
+import {News} from 'components/News/News'
+import {Music} from 'components/Music/Music'
+import {Settings} from 'components/Settings/Settings'
+import DialogsContainer from './components/Dialogs/DialogsContainer'
+import UsersContainer from './components/Users/UsersContainer'
+import ProfileContainer from './components/Profile/ProfileContainer'
+import HeaderContainer from './components/Header/HeaderContainer'
+import Login from './components/Login/Login'
+import {connect} from 'react-redux'
+import {AppRootStateType} from 'Redux/Store'
+import {initializeApp} from 'Redux/App-reducer'
+import Preloader from './components/common/Preloader/Preloader'
+import style from 'App.module.css'
 
 type AppContainerPropsType = {
     initialized: boolean
+    isAuth: boolean
     initializeApp: () => void
 }
 
 class App extends React.Component<AppContainerPropsType> {
 
     componentDidMount() {
-        this.props.initializeApp();
+        this.props.initializeApp()
     }
 
     render() {
 
         if (!this.props.initialized) {
-            return <Preloader/>;
+            return <Preloader/>
+        }
+
+        if (!this.props.isAuth) {
+            return <Login/>
         }
 
         return (
-            <div className="app-wrapper">
+            <div className={style.appWrapper}>
                 <HeaderContainer/>
                 <Navbar/>
-                <div className="app-wrapper-content">
+                <div className={style.appWrapperContent}>
                     <Routes>
-                        <Route path="/" element={<Navigate to="/Login"/>}/>
+                        <Route path="/" element={<Navigate to="/login"/>}/>
                         <Route path="/profile/*" element={<ProfileContainer/>}/>
                         <Route path="/profile/:userId" element={<ProfileContainer/>}/>
                         <Route path="/dialogs" element={<DialogsContainer/>}/>
@@ -50,18 +55,20 @@ class App extends React.Component<AppContainerPropsType> {
                     </Routes>
                 </div>
             </div>
-        );
+        )
     }
 }
 
 type MapStateToPropsType = {
     initialized: boolean
+    isAuth: boolean
 }
 
 const mapStateToProps = (state: AppRootStateType): MapStateToPropsType => {
     return {
         initialized: state.app.initialized,
-    };
-};
+        isAuth: state.auth.isAuth,
+    }
+}
 
-export default connect(mapStateToProps, {initializeApp})(App);
+export default connect(mapStateToProps, {initializeApp})(App)

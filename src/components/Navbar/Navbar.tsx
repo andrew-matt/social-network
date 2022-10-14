@@ -5,22 +5,22 @@ import s from './Navbar.module.css';
 const Navbar = () => {
     return <nav className={s.nav}>
         <div className={s.item}>
-            <NavLink to='/Profile' className={navData => navData.isActive ? s.activeLink : s.item}>Profile</NavLink>
+            <NavLink to='/profile' className={navData => navData.isActive ? s.activeLink : s.item}>Profile</NavLink>
         </div>
         <div className={s.item}>
-            <NavLink to='/Dialogs' className={navData => navData.isActive ? s.activeLink : s.item}>Messages</NavLink>
+            <NavLink to='/dialogs' className={navData => navData.isActive ? s.activeLink : s.item}>Messages</NavLink>
         </div>
         <div className={s.item}>
-            <NavLink to='/Users' className={navData => navData.isActive ? s.activeLink : s.item}>Users</NavLink>
+            <NavLink to='/users' className={navData => navData.isActive ? s.activeLink : s.item}>Users</NavLink>
         </div>
         <div className={s.item}>
-            <NavLink to='/News' className={navData => navData.isActive ? s.activeLink : s.item}>News</NavLink>
+            <NavLink to='/news' className={navData => navData.isActive ? s.activeLink : s.item}>News</NavLink>
         </div>
         <div className={s.item}>
-            <NavLink to='/Music' className={navData => navData.isActive ? s.activeLink : s.item}>Music</NavLink>
+            <NavLink to='/music' className={navData => navData.isActive ? s.activeLink : s.item}>Music</NavLink>
         </div>
         <div className={s.item}>
-            <NavLink to='/Settings' className={navData => navData.isActive ? s.activeLink : s.item}>Settings</NavLink>
+            <NavLink to='/settings' className={navData => navData.isActive ? s.activeLink : s.item}>Settings</NavLink>
         </div>
     </nav>
 }

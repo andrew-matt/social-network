@@ -1,0 +1,56 @@
+.formControl {
+    display: flex;
+    align-items: center;
+}
+
+.errorTooltipRelativeWrapper {
+    position: relative;
+}
+
+.errorTooltipPointer {
+    position: absolute;
+    top: -10px;
+    right: 0;
+    z-index: 1;
+    width: 0;
+    height: 0;
+    border-top: 10px solid transparent;
+    border-left: 10px solid #be4b49;
+    border-bottom: 10px solid transparent;
+}
+
+.errorTooltip {
+    position: absolute;
+    top: -20px;
+    bottom: -20px;
+    right: 10px;
+    padding: 10px;
+    white-space: nowrap;
+    background-color: #be4b49;
+    border: 0;
+    border-radius: 2px;
+    box-shadow: 0 0 0 1px rgb(139 3 0 / 75%), 0 1px 10px rgb(0 0 0 / 35%);
+    color: white;
+}
+
+.checkBox {
+    color: #a15aea !important;
+    margin-top: 10px !important;
+}
+
+.formFieldWrapper {
+    display: flex;
+    justify-content: center;
+}
+
+.checkBoxText {
+    display: flex;
+    align-items: center;
+    color: white;
+    margin-top: 10px
+}
+
+
+
+
+
