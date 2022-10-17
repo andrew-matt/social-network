@@ -5,6 +5,20 @@
     background-size: cover;
 }
 
+.linearProgressWrapper {
+    position: absolute;
+    left: 0;
+    right: 0;
+}
+
+.linearProgress {
+    background-color: #ac7ee3 !important;
+}
+
+.linearProgress span {
+    background-color: #8224e3 !important;
+}
+
 .loginFormContainer {
     font-family: "Montserrat", sans-serif;
     min-height: 100vh;

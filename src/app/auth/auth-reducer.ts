@@ -2,6 +2,7 @@ import {AppThunk} from 'app/store'
 import {Dispatch} from 'Redux'
 import {authAPI, securityAPI} from 'api/api'
 import {stopSubmit} from 'redux-form'
+import {setIsLoading} from 'app/app-reducer'
 
 const initialState = {
     userId: null as number | null,
@@ -51,17 +52,22 @@ export const getUserData = () => async (dispatch: Dispatch) => {
 }
 
 export const login = (email: string, password: string, rememberMe: boolean, captcha: string): AppThunk => async dispatch => {
-    const response = await authAPI.login(email, password, rememberMe, captcha)
-    if (response.data.resultCode === 0) {
-        await dispatch(getUserData())
-    } else {
+    try {
+        dispatch(setIsLoading(true))
+        const response = await authAPI.login(email, password, rememberMe, captcha)
+        if (response.data.resultCode === 0) {
+            await dispatch(getUserData())
+        } else {
 
-        if (response.data.resultCode === 10) {
-            dispatch(getCaptchaUrl())
+            if (response.data.resultCode === 10) {
+                dispatch(getCaptchaUrl())
+            }
+
+            const message = response.data.messages.length > 0 ? response.data.messages[0] : 'Some error'
+            dispatch(stopSubmit('login', {_error: message}))
         }
-
-        const message = response.data.messages.length > 0 ? response.data.messages[0] : 'Some error'
-        dispatch(stopSubmit('login', {_error: message}))
+    } finally {
+        dispatch(setIsLoading(false))
     }
 }
 
