@@ -1,8 +1,8 @@
 import React from 'react'
-import {login} from 'Redux/Auth-reducer'
+import {login} from 'app/auth/auth-reducer'
 import {connect} from 'react-redux'
 import {Navigate} from 'react-router-dom'
-import {AppRootStateType} from 'Redux/Store'
+import {AppRootStateType} from 'app/store'
 import {LoginFormDataType, LoginReduxForm} from 'components/Login/LoginForm/LoginForm'
 import style from './Login.module.css'
 

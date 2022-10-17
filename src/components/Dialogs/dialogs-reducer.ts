@@ -1,5 +1,3 @@
-import {AppActionsType} from './Store';
-
 export type DialogType = {
     id: number
     name: string
@@ -11,8 +9,6 @@ type MessageType = {
 }
 
 export type DialogPageType = typeof initialState
-
-const SEND_MESSAGE = 'SEND-MESSAGE';
 
 let initialState = {
     dialogs: [
@@ -29,16 +25,16 @@ let initialState = {
     ] as MessageType[],
 };
 
-const dialogsReducer = (state: DialogPageType = initialState, action: AppActionsType): DialogPageType => {
-    switch (action.type) {
-        case SEND_MESSAGE:
+export const dialogsReducer = (state: DialogPageType = initialState, {type, payload}: DialogsReducerActionTypes): DialogPageType => {
+    switch (type) {
+        case 'dialogs/SEND-MESSAGE':
             return {
                 ...state,
                 messages: [
                     ...state.messages,
                     {
                         id: 4,
-                        message: action.newMessageBody,
+                        message: payload.newMessageBody,
                     },
                 ],
             };
@@ -47,6 +43,11 @@ const dialogsReducer = (state: DialogPageType = initialState, action: AppActions
     }
 };
 
-export const SendMessageAC = (newMessageBody: string) => ({type: SEND_MESSAGE, newMessageBody} as const);
+//actions
+export const sendMessage = (newMessageBody: string) => ({type: 'dialogs/SEND-MESSAGE', payload: {newMessageBody}} as const);
 
-export default dialogsReducer;
+//types
+type SendMessageType = ReturnType<typeof sendMessage>
+
+export type DialogsReducerActionTypes = SendMessageType
+

@@ -1,12 +1,8 @@
-import React from "react";
-import preloader from "../../../assets/images/preloader.svg";
+import React from 'react'
+import CircularProgress from '@mui/material/CircularProgress'
+import style from './Preloader.module.css'
 
-const Preloader = () => {
-    return (
-        <div>
-            <img src={preloader} alt={'preloader'}/>
-        </div>
-    )
+export const Preloader = () => {
+    return <CircularProgress className={style.preloader} thickness={5}/>
 }
 
-export default Preloader;

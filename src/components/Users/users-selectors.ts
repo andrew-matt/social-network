@@ -1,4 +1,4 @@
-import {AppRootStateType} from './Store';
+import {AppRootStateType} from 'app/store';
 import {createSelector} from 'reselect';
 
 export const getUsersSelector = (state: AppRootStateType) => {

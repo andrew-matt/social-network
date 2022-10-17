@@ -1,8 +1,8 @@
 import React from 'react';
-import s from './Dialogs.module.css';
+import style from './Dialogs.module.css';
 import {DialogItem} from './DialogItem/DialogItem';
 import {Message} from './Message/Message';
-import {DialogPageType} from 'Redux/Dialogs-reducer';
+import {DialogPageType} from 'components/Dialogs/dialogs-reducer';
 import {Field, InjectedFormProps, reduxForm} from 'redux-form';
 import {Textarea} from 'components/common/FormControls/FormControl';
 import {maxLength30, required} from 'utils/validators/validators';
@@ -46,11 +46,11 @@ export const Dialogs: React.FC<DialogsPropsType> = (props) => {
     };
 
     return (
-        <div className={s.dialogs}>
-            <div className={s.dialogsItem}>
+        <div className={style.dialogs}>
+            <div className={style.dialogsItem}>
                 {dialogElements}
             </div>
-            <div className={s.messages}>
+            <div className={style.messages}>
                 {messageElements}
                 <AddMessageReduxForm onSubmit={addMessage}/>
             </div>

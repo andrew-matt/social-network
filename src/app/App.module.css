@@ -15,3 +15,11 @@
   grid-area: c;
   background-color: cornflowerblue;
 }
+
+.preloaderContainer {
+  background-color: #212428;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

@@ -1,4 +1,4 @@
-import {UsersType} from '../Redux/Users-reducer';
+import {UsersType} from 'components/Users/users-reducer';
 
 type NewObjPropsType = {
     id?: number

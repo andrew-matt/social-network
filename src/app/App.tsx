@@ -1,19 +1,19 @@
 import React from 'react'
-import Navbar from './components/Navbar/Navbar'
+import Navbar from 'components/Navbar/Navbar'
 import {Navigate, Route, Routes} from 'react-router-dom'
 import {News} from 'components/News/News'
 import {Music} from 'components/Music/Music'
 import {Settings} from 'components/Settings/Settings'
-import DialogsContainer from './components/Dialogs/DialogsContainer'
-import UsersContainer from './components/Users/UsersContainer'
-import ProfileContainer from './components/Profile/ProfileContainer'
-import HeaderContainer from './components/Header/HeaderContainer'
-import Login from './components/Login/Login'
+import DialogsContainer from 'components/Dialogs/DialogsContainer'
+import UsersContainer from 'components/Users/UsersContainer'
+import ProfileContainer from 'components/Profile/ProfileContainer'
+import HeaderContainer from 'components/Header/HeaderContainer'
 import {connect} from 'react-redux'
-import {AppRootStateType} from 'Redux/Store'
-import {initializeApp} from 'Redux/App-reducer'
-import Preloader from './components/common/Preloader/Preloader'
-import style from 'App.module.css'
+import {AppRootStateType} from 'app/store'
+import {initializeApp} from 'app/app-reducer'
+import {Preloader} from 'components/common/Preloader/Preloader'
+import style from 'app/App.module.css'
+import Login from 'components/Login/Login'
 
 type AppContainerPropsType = {
     initialized: boolean
@@ -30,7 +30,7 @@ class App extends React.Component<AppContainerPropsType> {
     render() {
 
         if (!this.props.initialized) {
-            return <Preloader/>
+            return <div className={style.preloaderContainer}><Preloader/></div>
         }
 
         if (!this.props.isAuth) {

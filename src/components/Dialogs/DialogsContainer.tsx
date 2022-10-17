@@ -1,10 +1,10 @@
-import {DialogPageType, SendMessageAC} from '../../Redux/Dialogs-reducer';
 import {Dialogs} from './Dialogs';
 import {connect} from 'react-redux';
-import {AppRootStateType} from '../../Redux/Store';
+import {AppRootStateType} from 'app/store';
 import {compose, Dispatch} from 'redux';
 import React from 'react';
-import {withAuthRedirect} from '../../hoc/withAuthRedirect';
+import {withAuthRedirect} from 'hoc/withAuthRedirect';
+import {DialogPageType, sendMessage} from 'components/Dialogs/dialogs-reducer'
 
 type MapStateToPropsType = {
     dialogsPage: DialogPageType
@@ -23,7 +23,7 @@ const mapStateToProps = (state: AppRootStateType): MapStateToPropsType => {
 const mapDispatchToProps = (dispatch: Dispatch): MapDispatchToPropsType => {
     return {
         sendMessage: (newMessageBody: string) => {
-            dispatch(SendMessageAC(newMessageBody));
+            dispatch(sendMessage(newMessageBody));
         },
     };
 };

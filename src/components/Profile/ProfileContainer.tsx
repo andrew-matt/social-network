@@ -8,11 +8,11 @@ import {
     updateStatus,
     savePhoto,
     saveProfile,
-} from '../../Redux/Profile-reducer';
-import {AppRootStateType} from '../../Redux/Store';
+} from 'components/Profile/profile-reducer';
+import {AppRootStateType} from 'app/store';
 import {useLocation, useNavigate, useParams} from 'react-router-dom';
 import {compose} from 'redux';
-import {withAuthRedirect} from '../../hoc/withAuthRedirect';
+import {withAuthRedirect} from 'hoc/withAuthRedirect';
 
 type ProfileContainerPropsType = {
     getUserProfile: (userId: number) => void
