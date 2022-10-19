@@ -29,6 +29,7 @@ const Login = (props: LoginPropsType) => {
                 <LoginReduxForm
                     onSubmit={onSubmit}
                     captchaUrl={props.captchaUrl}
+                    isLoading={props.isLoading}
                 />
             </div>
         </div>

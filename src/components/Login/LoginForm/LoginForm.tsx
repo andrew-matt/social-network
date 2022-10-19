@@ -14,6 +14,7 @@ const LoginForm: React.FC<InjectedFormProps<LoginFormDataType, LoginFormPropsTyp
                                                                                                                 handleSubmit,
                                                                                                                 error,
                                                                                                                 captchaUrl,
+                                                                                                                isLoading,
                                                                                                             }) => {
     return (
         <form onSubmit={handleSubmit}>
@@ -36,7 +37,7 @@ const LoginForm: React.FC<InjectedFormProps<LoginFormDataType, LoginFormPropsTyp
                 error,
             })}
             <div className={style.buttonContainer}>
-                <button className={style.button}>Log in</button>
+                <button className={style.button} disabled={isLoading}>Log in</button>
             </div>
             <div className={style.fieldsErrorWrapper}>
                 <div
@@ -60,4 +61,5 @@ export type LoginFormDataType = {
 
 type LoginFormPropsType = {
     captchaUrl: string | null
+    isLoading: boolean
 }
