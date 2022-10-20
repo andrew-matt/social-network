@@ -78,10 +78,15 @@ export const getCaptchaUrl = (): AppThunk => async dispatch => {
 }
 
 export const logout = () => async (dispatch: Dispatch) => {
-    const response = await authAPI.logout()
-    if (response.data.resultCode === 0) {
-        dispatch(setUserData(null, null, null, false))
-        dispatch(clearCaptcha(null))
+    try {
+        dispatch(setIsLoading(true))
+        const response = await authAPI.logout()
+        if (response.data.resultCode === 0) {
+            dispatch(setUserData(null, null, null, false))
+            dispatch(clearCaptcha(null))
+        }
+    } finally {
+        dispatch(setIsLoading(false))
     }
 }
 
