@@ -1,14 +1,35 @@
+.block {
+    display: flex;
+    justify-content: center;
+    background-color: #f8f9fb;
+}
+
 .nav {
-    grid-area: n;
-    background-color: burlywood;
-    padding: 20px;
+    margin-top: 50px;
+    max-width: 200px;
+    display: flex;
+    flex-wrap: wrap;
+    height: fit-content;
 }
 
-.item a {
-    color: white;
+.item {
+    padding: 14px 0;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 600;
+    color: #838daa;
     text-decoration: none;
+    transition: .4s;
 }
 
-.item a.activeLink {
-    color: gold;
+.item span {
+    margin-top: 4px;
+}
+
+.item.activeLink, a:hover {
+    color: #8224e3;
 }
