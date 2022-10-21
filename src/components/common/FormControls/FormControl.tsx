@@ -32,8 +32,8 @@ export const Input = (props: any) => {
 
 export const CheckBox = (props: any) => {
     const {input, meta, child, ...restProps} = props
-    return <FormControl {...props}><Checkbox {...input} {...restProps}
-                                             className={style.checkBox}/></FormControl>
+    return <FormControl {...props}><Checkbox size={props.size} {...input} {...restProps}
+                                             className={`${style.checkBox} ${props.className}`}/></FormControl>
 }
 
 export const createField = (placeholder: string | null, name: string, validators: any, component: any, props: any = {}, text = '') => {

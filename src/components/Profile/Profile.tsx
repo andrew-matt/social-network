@@ -10,6 +10,7 @@ type ProfilePropsType = {
     updateStatus: (status: string) => void
     savePhoto: (photo: File) => void
     saveProfile: (formData: UserProfileType) => Promise<undefined>
+    isLoading: boolean
 }
 
 export const Profile: React.FC<ProfilePropsType> = (props) => {
@@ -22,6 +23,7 @@ export const Profile: React.FC<ProfilePropsType> = (props) => {
                 updateStatus={props.updateStatus}
                 savePhoto={props.savePhoto}
                 saveProfile={props.saveProfile}
+                isLoading={props.isLoading}
             />
             <MyPostsContainer/>
         </div>

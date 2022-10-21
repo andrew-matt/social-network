@@ -13,6 +13,7 @@ type HeaderPropsType = {
     logout: () => void
     profile: UserProfileType | null
     isLoading: boolean
+    ownerProfilePhoto: null | { small: string, large: string }
 }
 
 export const Header = (props: HeaderPropsType) => {
@@ -51,7 +52,7 @@ export const Header = (props: HeaderPropsType) => {
                     <div className={style.avatarWrapper}>
                         <img
                             id={'avatar'}
-                            src={((props.profile && props.profile.photos) && props.profile.photos.large) || userPhoto}
+                            src={(props.ownerProfilePhoto && props.ownerProfilePhoto.large) || userPhoto}
                             className={style.avatar}
                             alt={'user'}
                             onClick={() => setShowMenu(!showMenu)}

@@ -1,5 +1,5 @@
 import React, {ComponentType} from 'react';
-import {Profile} from './Profile';
+import {Profile} from 'components/Profile/Profile';
 import {connect} from 'react-redux';
 import {
     getUserProfile,
@@ -15,7 +15,7 @@ import {compose} from 'redux';
 import {withAuthRedirect} from 'hoc/withAuthRedirect';
 
 type ProfileContainerPropsType = {
-    getUserProfile: (userId: number) => void
+    getUserProfile: (userId: number, isOwner?: boolean) => void
     getStatus: (userId: number) => void
     updateStatus: (status: string) => void
     savePhoto: (photo: File) => void
@@ -29,6 +29,7 @@ type ProfileContainerPropsType = {
     isAuth: boolean
     status: string
     authorizedUserId: number | null
+    isLoading: boolean
 }
 
 class ProfileContainer extends React.Component<ProfileContainerPropsType> {
@@ -38,9 +39,11 @@ class ProfileContainer extends React.Component<ProfileContainerPropsType> {
 
         if (!userId) {
             userId = this.props.authorizedUserId !== null ? this.props.authorizedUserId : 23651;
+            this.props.getUserProfile(userId, true);
+        } else {
+            this.props.getUserProfile(userId);
         }
 
-        this.props.getUserProfile(userId);
         this.props.getStatus(userId);
     }
 
@@ -63,6 +66,7 @@ class ProfileContainer extends React.Component<ProfileContainerPropsType> {
                 updateStatus={this.props.updateStatus}
                 savePhoto={this.props.savePhoto}
                 saveProfile={this.props.saveProfile}
+                isLoading={this.props.isLoading}
             />
         );
     }
@@ -73,6 +77,7 @@ type MapStateToPropsType = {
     status: string
     authorizedUserId: number | null
     isAuth: boolean
+    isLoading: boolean
 }
 
 const mapStateToProps = (state: AppRootStateType): MapStateToPropsType => {
@@ -81,6 +86,7 @@ const mapStateToProps = (state: AppRootStateType): MapStateToPropsType => {
         status: state.profilePage.status,
         authorizedUserId: state.auth.userId,
         isAuth: state.auth.isAuth,
+        isLoading: state.app.isLoading,
     };
 };
 

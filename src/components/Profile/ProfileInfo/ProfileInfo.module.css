@@ -1,11 +1,55 @@
-.descriptionBlock {
-    padding: 10px;
+.profileHeader {
+    position: relative;
+    background-image: url("/src/assets/images/profileHeader.jpg");
+    background-repeat: no-repeat;
+    height: 200px;
+}
+
+.mainPhotoWrapper {
+    position: absolute;
+    top: 30px;
+    left: 50px;
+    border-radius: 14px;
+    overflow: hidden;
+    height: 200px;
 }
 
 .mainPhoto {
     max-width: 200px;
+    transition: .4s;
+    transform: scale(1.02);
+}
+
+.mainPhoto:hover {
+    transform: scale(1.1);
+}
+
+.descriptionBlock {
+    border-top: 1px solid #e7edf2;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.descriptionWrapper {
+    border-right: 1px solid #e7edf2;
+    border-left: 1px solid #e7edf2;
+    min-width: 34%;
+    padding: 10px;
 }
 
 .contact {
     padding-left: 10px;
+}
+
+.uploadPhotoLabel {
+    position: absolute;
+    height: 200px;
+    cursor: pointer;
+    border-radius: 14px;
+}
+
+.uploadPhotoInput {
+    display: none;
 }

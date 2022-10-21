@@ -1,0 +1,15 @@
+.inputField {
+    border: none;
+    padding: 8px 8px 8px 16px;
+    outline: none;
+    color: #626c72;
+    font-family: "Nunito Sans", sans-serif;
+    font-size: 14px;
+}
+
+.checkBoxNew {
+    color: #626c72 !important;
+    margin: 0 !important;
+    margin-left: 8px !important;
+    padding: 6px !important;
+}

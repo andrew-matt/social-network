@@ -14,9 +14,9 @@
     z-index: 1;
     width: 0;
     height: 0;
-    border-top: 10px solid transparent;
-    border-left: 10px solid #be4b49;
-    border-bottom: 10px solid transparent;
+    border-top: 10px solid transparent !important;
+    border-left: 10px solid #be4b49 !important;
+    border-bottom: 10px solid transparent !important;
 }
 
 .errorTooltip {
