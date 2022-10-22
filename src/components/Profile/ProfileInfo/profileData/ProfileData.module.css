@@ -10,12 +10,11 @@
     font-family: "Quicksand", sans-serif;
     font-weight: 600;
     font-size: 14px;
-    background-size: 200%;
     border-radius: 30px;
     border: none;
     background-color: #76818a;
     color: #f8f9fb;
-    transition: opacity .4s, visibility .4s, background .75s;
+    transition: .75s;
     display: flex;
     justify-content: center;
     align-items: center;

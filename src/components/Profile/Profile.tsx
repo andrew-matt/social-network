@@ -11,6 +11,7 @@ type ProfilePropsType = {
     savePhoto: (photo: File) => void
     saveProfile: (formData: UserProfileType) => Promise<undefined>
     isLoading: boolean
+    ownerProfilePhoto: null | { small: string, large: string }
 }
 
 export const Profile: React.FC<ProfilePropsType> = (props) => {
@@ -25,7 +26,7 @@ export const Profile: React.FC<ProfilePropsType> = (props) => {
                 saveProfile={props.saveProfile}
                 isLoading={props.isLoading}
             />
-            <MyPostsContainer/>
+            <MyPostsContainer ownerProfilePhoto={props.ownerProfilePhoto}/>
         </div>
     );
 };

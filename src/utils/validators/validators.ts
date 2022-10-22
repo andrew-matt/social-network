@@ -30,6 +30,12 @@ export const captchaRequired = (value: string) => {
     return 'Symbols required';
 };
 
+export const postRequired = (value: string) => {
+    if (value) return undefined;
+
+    return 'New post text is required';
+};
+
 export const maxLengthCreator = (maxLength: number) => (value: string) => {
     if (value.length > maxLength) return `Max length is ${maxLength} symbols`;
 
@@ -37,3 +43,4 @@ export const maxLengthCreator = (maxLength: number) => (value: string) => {
 };
 
 export const maxLength30 = maxLengthCreator(30);
+export const maxLength200 = maxLengthCreator(200);

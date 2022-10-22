@@ -7,7 +7,7 @@ import {setIsLoading} from 'app/app-reducer'
 const initialState = {
     posts: [
         {id: 1, message: `These Aren't The Droids You're Looking For`, likesCount: 15},
-        {id: 2, message: `May the Force be with you`, likesCount: 20},
+        {id: 2, message: `May the Object be with you`, likesCount: 20},
     ] as PostType[],
     profile: null as null | UserProfileType,
     ownerProfilePhoto: null as null | {
@@ -21,9 +21,8 @@ export const profileReducer = (state: InitialStateType = initialState, action: P
     switch (action.type) {
         case 'profile/ADD-POST':
             let newPost: PostType = {
-                id: 3,
+                id: state.posts[state.posts.length - 1].id + 1,
                 message: action.newPostText,
-                likesCount: 4,
             }
             return {...state, posts: [...state.posts, newPost]}
         case 'profile/SET-USER-PROFILE':
@@ -134,7 +133,7 @@ export type ProfileReducerActionTypes = AddPostType
 export type PostType = {
     id: number
     message: string
-    likesCount: number
+    likesCount?: number
 }
 
 export type ProfilePageType = {

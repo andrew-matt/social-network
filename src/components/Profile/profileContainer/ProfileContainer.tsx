@@ -30,6 +30,7 @@ type ProfileContainerPropsType = {
     status: string
     authorizedUserId: number | null
     isLoading: boolean
+    ownerProfilePhoto: null | { small: string, large: string }
 }
 
 class ProfileContainer extends React.Component<ProfileContainerPropsType> {
@@ -67,6 +68,7 @@ class ProfileContainer extends React.Component<ProfileContainerPropsType> {
                 savePhoto={this.props.savePhoto}
                 saveProfile={this.props.saveProfile}
                 isLoading={this.props.isLoading}
+                ownerProfilePhoto={this.props.ownerProfilePhoto}
             />
         );
     }
@@ -78,6 +80,7 @@ type MapStateToPropsType = {
     authorizedUserId: number | null
     isAuth: boolean
     isLoading: boolean
+    ownerProfilePhoto: null | { small: string, large: string }
 }
 
 const mapStateToProps = (state: AppRootStateType): MapStateToPropsType => {
@@ -87,6 +90,7 @@ const mapStateToProps = (state: AppRootStateType): MapStateToPropsType => {
         authorizedUserId: state.auth.userId,
         isAuth: state.auth.isAuth,
         isLoading: state.app.isLoading,
+        ownerProfilePhoto: state.profilePage.ownerProfilePhoto,
     };
 };
 
