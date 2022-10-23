@@ -36,6 +36,12 @@ export const postRequired = (value: string) => {
     return 'New post text is required';
 };
 
+export const messageRequired = (value: string) => {
+    if (value) return undefined;
+
+    return 'Message text is required';
+};
+
 export const maxLengthCreator = (maxLength: number) => (value: string) => {
     if (value.length > maxLength) return `Max length is ${maxLength} symbols`;
 

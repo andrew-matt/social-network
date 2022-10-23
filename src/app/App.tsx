@@ -4,7 +4,7 @@ import {Navigate, Route, Routes} from 'react-router-dom'
 import {News} from 'components/News/News'
 import {Music} from 'components/Music/Music'
 import {Settings} from 'components/Settings/Settings'
-import DialogsContainer from 'components/Dialogs/DialogsContainer'
+import DialogsContainer from 'components/Dialogs/DialogsContainer/DialogsContainer'
 import UsersContainer from 'components/Users/UsersContainer'
 import ProfileContainer from 'components/Profile/profileContainer/ProfileContainer'
 import HeaderContainer from 'components/Header/HeaderContainer'
@@ -14,6 +14,9 @@ import {initializeApp} from 'app/app-reducer'
 import {Preloader} from 'components/common/Preloader/Preloader'
 import style from 'app/App.module.css'
 import Login from 'components/Login/Login'
+import {
+    DialogItemConversation
+} from 'components/Dialogs/DialogItem/DialogItemConversation/DialogItemConversation'
 
 type AppContainerPropsType = {
     initialized: boolean
@@ -47,6 +50,7 @@ class App extends React.Component<AppContainerPropsType> {
                         <Route path="/profile/*" element={<ProfileContainer/>}/>
                         <Route path="/profile/:userId" element={<ProfileContainer/>}/>
                         <Route path="/dialogs" element={<DialogsContainer/>}/>
+                        <Route path="/dialogs/:userId" element={<DialogItemConversation/>}/>
                         <Route path="/news" element={<News/>}/>
                         <Route path="/music" element={<Music/>}/>
                         <Route path="/settings" element={<Settings/>}/>

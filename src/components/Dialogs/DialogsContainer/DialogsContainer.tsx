@@ -1,4 +1,4 @@
-import {Dialogs} from './Dialogs';
+import {Dialogs} from 'components/Dialogs/Dialogs';
 import {connect} from 'react-redux';
 import {AppRootStateType} from 'app/store';
 import {compose, Dispatch} from 'redux';

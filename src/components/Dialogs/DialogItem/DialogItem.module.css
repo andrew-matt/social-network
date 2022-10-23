@@ -1,0 +1,15 @@
+.dialog {
+    padding: 10px;
+}
+
+.dialog a {
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 600;
+    color: #838daa;
+    text-decoration: none;
+    transition: .4s;
+}
+
+.dialog a:hover {
+    color: #8224e3;
+}

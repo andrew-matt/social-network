@@ -3,18 +3,10 @@
     grid-template-columns: 2fr 10fr;
 }
 
-.dialogsItem .dialog {
+.messagesWrapper {
     padding: 10px;
-}
-
-.dialogsItem .active {
-    color: gold;
 }
 
 .messages {
-    padding: 10px;
-}
-
-.messages .message {
-
+    /*border: 1px solid red;*/
 }

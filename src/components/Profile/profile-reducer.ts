@@ -70,7 +70,6 @@ export const getUserProfile = (userId: number, isOwner?: boolean) => async (disp
     dispatch(setUserProfile(response.data))
 
     if (isOwner) {
-        console.log(response.data)
         dispatch(saveOwnerProfilePhoto(response.data.photos))
     }
 }
