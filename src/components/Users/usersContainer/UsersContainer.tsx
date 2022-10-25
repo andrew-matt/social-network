@@ -8,8 +8,8 @@ import {
     UsersType,
 } from 'components/Users/users-reducer'
 import React from 'react'
-import Users from './Users'
-import {Preloader} from '../common/Preloader/Preloader'
+import {Users} from 'components/Users/Users'
+import {Preloader} from 'components/common/Preloader/Preloader'
 import {compose} from 'redux'
 import {
     getCurrentPage,
@@ -20,6 +20,7 @@ import {
     getUsers,
 } from 'components/Users/users-selectors'
 import {withAuthRedirect} from 'hoc/withAuthRedirect'
+import style from './UsersContainer.module.css'
 
 type UsersContainerPropsType = {
     users: UsersType[]
@@ -43,18 +44,12 @@ class UsersContainer extends React.Component<UsersContainerPropsType> {
     onPageChanged = (pageNumber: number) => {
         this.props.setCurrentPage(pageNumber)
         this.props.getUsers(pageNumber, this.props.pageSize)
-        // this.props.setCurrentPage(pageNumber);
-        // this.props.toggleIsFetching(true);
-        // usersAPI.getUsers(pageNumber, this.props.pageSize).then(data => {
-        //     this.props.toggleIsFetching(false);
-        //     this.props.setUsers(data.items);
-        // });
     }
 
     render() {
         return (
             <>
-                {this.props.isFetching ? <Preloader/> : null}
+                {this.props.isFetching ? <div className={style.preloaderWrapper}><Preloader/></div> : null}
                 <Users
                     users={this.props.users}
                     follow={this.props.follow}

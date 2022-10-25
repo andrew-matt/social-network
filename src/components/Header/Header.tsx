@@ -3,7 +3,7 @@ import style from './Header.module.css'
 import styles from 'components/Login/Login.module.css'
 import {NavLink} from 'react-router-dom'
 import logo from 'assets/logo/logo.png'
-import userPhoto from 'assets/images/user.jpg'
+import userPhoto from 'assets/images/user.png'
 import {UserProfileType} from 'components/Profile/profile-reducer'
 import LinearProgress from '@mui/material/LinearProgress'
 

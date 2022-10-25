@@ -2,6 +2,7 @@ import {usersAPI} from 'api/api'
 import {Dispatch} from 'Redux'
 import {AxiosResponse} from 'axios'
 import {updateObjectInArray} from 'utils/object-helpers'
+import {setIsLoading} from 'app/app-reducer'
 
 export type UsersType = {
     id: number
@@ -118,11 +119,21 @@ const followUnfollowFlow = async (dispatch: Dispatch, userId: number, apiMethod:
 }
 
 export const follow = (userId: number) => async (dispatch: Dispatch) => {
-    followUnfollowFlow(dispatch, userId, usersAPI.follow.bind(usersAPI), followSuccess)
+    try {
+        dispatch(setIsLoading(true))
+        await followUnfollowFlow(dispatch, userId, usersAPI.follow.bind(usersAPI), followSuccess)
+    } finally {
+        dispatch(setIsLoading(false))
+    }
 }
 
 export const unfollow = (userId: number) => async (dispatch: Dispatch) => {
-    followUnfollowFlow(dispatch, userId, usersAPI.unfollow.bind(usersAPI), unfollowSuccess)
+    try {
+        dispatch(setIsLoading(true))
+        await  followUnfollowFlow(dispatch, userId, usersAPI.unfollow.bind(usersAPI), unfollowSuccess)
+    } finally {
+        dispatch(setIsLoading(false))
+    }
 }
 
 //types

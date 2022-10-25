@@ -1,6 +1,6 @@
 import React from 'react'
 import style from './Post.module.css'
-import userPhoto from 'assets/images/user.jpg'
+import userPhoto from 'assets/images/user.png'
 
 type PostPropsType = {
     message: string

@@ -36,7 +36,7 @@ const AddMessageForm: React.FC<InjectedFormProps<DialogsFormDataType>> = (props)
     );
 };
 
-export const AddMessageReduxForm = reduxForm<DialogsFormDataType>({form: 'dialogAddMessageForm'})(AddMessageForm);
+export const AddMessageReduxForm = reduxForm<DialogsFormDataType>({form: 'dialogAddMessageForm', touchOnBlur: false})(AddMessageForm);
 
 export const Dialogs: React.FC<DialogsPropsType> = (props) => {
 
