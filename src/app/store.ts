@@ -1,4 +1,4 @@
-import {applyMiddleware, combineReducers, legacy_createStore as createStore} from 'redux'
+import {applyMiddleware, combineReducers, legacy_createStore as createStore, compose} from 'redux'
 import {
     dialogsReducer,
     DialogsReducerActionTypes,
